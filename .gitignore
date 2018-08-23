@@ -34,3 +34,14 @@ sysinfo.txt
 # Builds
 *.apk
 *.unitypackage
+*.meta
+*.meta
+3rd Year Game/Assets/Prefabs/Dhevan's Prefabs.meta
+3rd Year Game/Assets/Prefabs/Jan's Prefabs.meta
+3rd Year Game/Assets/Prefabs/Jason's Prefabs.meta
+3rd Year Game/Assets/Prefabs/Josh's Prefabs.meta
+3rd Year Game/Assets/Scenes/Main Scenes.meta
+3rd Year Game/Assets/Scripts/Jan's Scripts.meta
+3rd Year Game/Assets/Scripts/Jason's Scripts.meta
+3rd Year Game/Assets/Scripts/Josh's Scripts.meta
+3rd Year Game/Assets/Sprites.meta

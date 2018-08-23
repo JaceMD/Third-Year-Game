@@ -11,7 +11,7 @@ public class CameraController : MonoBehaviour
 	public Transform playerT;
 	public float followTime = 0.15f;
 	public float FollowSpeed = 4f;
-	public float xPosOffset = 0f, yPosOffset = 3.5f, zPosoffset = -10f;
+	public float xPosOffset = 0f, yPosOffset = 3.5f, zPosoffset = -12f;
 
 	private bool cameraFlipped = false;
 	private Vector3 camRotation;

@@ -16,12 +16,18 @@ public class MoonController : MonoBehaviour {
 	public GameObject playerObj;
 	public GameObject playerRCTarget1, playerRCTarget2, playerRCTarget3, playerRCTarget4;
 
-	public Ray[] lightDetectionRays = new Ray[4];
+	private Ray[] lightDetectionRays = new Ray[4];
+	private GameObject[] pRCTargets = new GameObject[4];
+
 
 
 	// Use this for initialization
 	void Start () {
 		controller = InputManager.ActiveDevice;
+		pRCTargets [0] = playerRCTarget1;
+		pRCTargets [1] = playerRCTarget2;
+		pRCTargets [2] = playerRCTarget3;
+		pRCTargets [3] = playerRCTarget4;
 	}
 	
 	// Update is called once per frame
@@ -38,24 +44,19 @@ public class MoonController : MonoBehaviour {
 	}
 
 	void FixedUpdate(){
-		//lightDetectionRays [0] = new Ray (moonObj.transform.position, playerRCTarget1.transform.position);
-		//lightDetectionRays [1] = new Ray (moonObj.transform.position, playerRCTarget2.transform.position);
-		//lightDetectionRays [2] = new Ray (moonObj.transform.position, playerRCTarget3.transform.position);
-		//lightDetectionRays [3] = new Ray (moonObj.transform.position, playerRCTarget4.transform.position);
-		Ray ray = new Ray (moonObj.transform.position, playerRCTarget1.transform.position);
+
 
 		RaycastHit hit;
+		for (int loop = 0; loop < 4; loop++) {
+			lightDetectionRays [loop] = new Ray (moonObj.transform.position, pRCTargets [loop].transform.position - moonObj.transform.position);
+			Debug.DrawLine (moonObj.transform.position,  pRCTargets [loop].transform.position, Color.red);
 
-		if (Physics.Raycast(ray, out hit, 20f)) {
-			Debug.DrawLine(hit.point, hit.point + Vector3.up*5f, Color.green);
-			Debug.Log ("Check");
+			if (Physics.Raycast(lightDetectionRays [loop], out hit, 20f) && (hit.transform.gameObject.tag == "PRCTarget")) {
+				Debug.DrawLine(hit.point, hit.point + Vector3.up*2f, Color.green);
+				Debug.Log ("Check");
+			}
 		}
-	
 
-		Debug.DrawLine (moonObj.transform.position, playerRCTarget1.transform.position, Color.red);
-		Debug.DrawLine (moonObj.transform.position, playerRCTarget2.transform.position, Color.red);
-		Debug.DrawLine (moonObj.transform.position, playerRCTarget3.transform.position, Color.red);
-		Debug.DrawLine (moonObj.transform.position, playerRCTarget4.transform.position, Color.red);
 	}
 
 	void MoonRotationControls(){

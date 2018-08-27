@@ -38,7 +38,7 @@ public class PlayerController : MonoBehaviour {
 		checkTriggerButtons ();
 		playerRB.rotation = Quaternion.identity; //prevent player object from rotating
 
-		if (Time.time >= startDashingTime + 1f) {
+		if (Time.time >= startDashingTime + 1f && dashing == true) {
 			dashing = false;
 			playerRB.velocity = Vector3.zero;
 		}

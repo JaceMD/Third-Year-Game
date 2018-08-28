@@ -322,7 +322,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: 0db15b4dba87cd849b3ff71bbb245427, type: 2}
+  - {fileID: 2100000, guid: b9d151348d7ce5b4c83ecc7da1f73d7d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1374,7 +1374,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2142852259}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3ddc20950dfb26f4bafdb40aac107370, type: 3}
+  m_Script: {fileID: 11500000, guid: 70158b9901e180f46937736d609929fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   moonTransform: {fileID: 2142852260}

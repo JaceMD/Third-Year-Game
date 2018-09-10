@@ -2,20 +2,15 @@
 using UnityEngine;
 using InControl;
 
-public class PlayerController : MonoBehaviour {
+public class CharacterController : MonoBehaviour {
 
 	private InputDevice controller;
 
 	public float moveSpeed = 10f;
-	public float dashSpeedFactor = 30f;
+	public float dashSpeed = 30f;
 	public float crouchSpeed = 5f;
 
-	private bool dashing = false;
-	private float startDashingTime;
-	private bool crouching = false;
-
 	private float xInput, yInput, zInput;
-	private bool controlsInverted = false;
 
 	public float jumpStrength = 4f;
 	public float fallStrengthFactor = 4f;
@@ -35,28 +30,13 @@ public class PlayerController : MonoBehaviour {
 	void Update () {
 		checkMovement ();
 		checkActionButtons ();
-		checkTriggerButtons ();
 		playerRB.rotation = Quaternion.identity; //prevent player object from rotating
-
-<<<<<<< HEAD
-		if (Time.time >= startDashingTime + 1f && dashing == true) {
-=======
-		if (Time.time >= startDashingTime + 1f) {
->>>>>>> origin/Josh
-			dashing = false;
-			playerRB.velocity = Vector3.zero;
-		}
 	}
 
 	void checkMovement(){
 		xInput = controller.LeftStick.X;  
 		zInput = controller.LeftStick.Y;
 
-		//Invert Controsl for when camera flips
-		if (controlsInverted) {
-			xInput *= -1f;
-			zInput *= -1f;
-		}
 		Vector3 Movement = new Vector3(xInput, 0f, zInput) * Time.deltaTime * moveSpeed;
 		this.transform.Translate(Movement, Space.World); 
 	}
@@ -74,26 +54,8 @@ public class PlayerController : MonoBehaviour {
 				playerRB.AddForce (new Vector3 (0f, -1f * (jumpStrength*50f/fallStrengthFactor), 0f), ForceMode.Force);
 			}
 		}
-			
 	}
-	void checkTriggerButtons(){
-		if (controller.RightTrigger == true && dashing == false) {
-			playerRB.AddForce (new Vector3 (xInput, 0f, zInput) * dashSpeedFactor, ForceMode.Force);
-			dashing = true;
-			startDashingTime = Time.time;
-			Debug.Log ("Dashed");
-		}
-
-	}
-
-	void InvertControls (){
-		if (controlsInverted == true) {
-			controlsInverted = false;
-		} else {
-			controlsInverted = true;
-		}
-	}
-
+		
 	void OnCollisionEnter(Collision other){
 		if (other.gameObject.tag == "Platform") {
 			jumped = false;

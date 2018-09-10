@@ -11,17 +11,13 @@ public class CameraController : MonoBehaviour
 	public Transform playerT;
 	public float followTime = 0.15f;
 	public float FollowSpeed = 4f;
-<<<<<<< HEAD
+
 	public float xPosOffset = 0f, yPosOffset = 3.5f, zPosoffset = -12f;
 
 	private bool cameraFlipped = false;
 	private bool cameraFlipping = false;
 	private float startFlipTime;
-=======
-	public float xPosOffset = 0f, yPosOffset = 3.5f, zPosoffset = -10f;
 
-	private bool cameraFlipped = false;
->>>>>>> origin/Josh
 	private Vector3 camRotation;
 	public float camFlipSpeed = 6f;
 
@@ -43,7 +39,7 @@ public class CameraController : MonoBehaviour
 		Quaternion rot = Quaternion.Euler (camRotation);
 		this.transform.rotation = Quaternion.Slerp(this.transform.rotation, rot, Time.deltaTime * camFlipSpeed);
 
-<<<<<<< HEAD
+
 		if ((Input.GetKeyDown(KeyCode.Q) || controller.Action4) && cameraFlipping == false) {
 			FlipCamera ();
 			GameObject.Find ("Player").SendMessage ("InvertControls");
@@ -53,13 +49,14 @@ public class CameraController : MonoBehaviour
 
 		if (Time.time >= startFlipTime + 1f) {
 			cameraFlipping = false;
-=======
+
 		if (Input.GetKeyDown(KeyCode.Q) || controller.Action4) {
 			FlipCamera ();
 			GameObject.Find ("Player").SendMessage ("InvertControls");
->>>>>>> origin/Josh
+
 		}
 
+		}
 	}
 
 	void FlipCamera ()

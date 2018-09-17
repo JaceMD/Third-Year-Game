@@ -53,7 +53,7 @@ public class MoonController : MonoBehaviour {
 
 			if (Physics.Raycast(lightDetectionRays [loop], out hit, 20f) && (hit.transform.gameObject.tag == "PRCTarget")) {
 				Debug.DrawLine(hit.point, hit.point + Vector3.up*2f, Color.green);
-				Debug.Log ("Check");
+				//Debug.Log ("Check");
 			}
 		}
 

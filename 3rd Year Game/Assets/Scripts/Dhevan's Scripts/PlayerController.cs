@@ -23,6 +23,9 @@ public class PlayerController : MonoBehaviour {
 	public float jumpHeight = 1.5f;
 	private Vector3 jumpPos;
 
+	private bool buttonPressDelay = false;
+	private float startButtonPressDelay; //Since Incontrol doesnt have a getDown method, this is used to check for single button presses.
+
 	private Rigidbody playerRB;
 
 	// Use this for initialization
@@ -36,11 +39,16 @@ public class PlayerController : MonoBehaviour {
 		checkMovement ();
 		checkActionButtons ();
 		checkTriggerButtons ();
+		checkStickButtons ();
 		playerRB.rotation = Quaternion.identity; //prevent player object from rotating
 
 		if (Time.time >= startDashingTime + 1f && dashing == true) {
 			dashing = false;
 			playerRB.velocity = Vector3.zero;
+		}
+
+		if (Time.time >= startButtonPressDelay + 0.5f && buttonPressDelay == true) { //User has to wait 0.5 seconds to repress a button
+			buttonPressDelay = false;
 		}
 	}
 
@@ -53,7 +61,12 @@ public class PlayerController : MonoBehaviour {
 			xInput *= -1f;
 			zInput *= -1f;
 		}
-		Vector3 Movement = new Vector3(xInput, 0f, zInput) * Time.deltaTime * moveSpeed;
+		Vector3 Movement = Vector3.zero;
+		if (crouching == false) {
+			 Movement = new Vector3 (xInput, 0f, zInput) * Time.deltaTime * moveSpeed;
+		} else if(crouching == true) {
+			 Movement = new Vector3 (xInput, 0f, zInput) * Time.deltaTime * crouchSpeed;
+		}
 		this.transform.Translate(Movement, Space.World); 
 	}
 
@@ -79,7 +92,19 @@ public class PlayerController : MonoBehaviour {
 			startDashingTime = Time.time;
 			Debug.Log ("Dashed");
 		}
-
+	}
+	void checkStickButtons(){
+		if (controller.RightStickButton == true && buttonPressDelay == false) {
+			if (crouching == false) {
+				this.transform.localScale = new Vector3 (1f, 0.5f, 1f);
+				crouching = true;
+			} else if (crouching == true){
+				crouching = false;
+				this.transform.localScale = new Vector3 (1f, 1f, 1f);
+			}
+			buttonPressDelay = true;
+			startButtonPressDelay = Time.time;
+		} 
 	}
 
 	void InvertControls (){

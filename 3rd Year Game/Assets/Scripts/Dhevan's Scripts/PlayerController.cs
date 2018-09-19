@@ -18,6 +18,7 @@ public class PlayerController : MonoBehaviour {
 
 	private float xInput, yInput, zInput;
 	private bool controlsInverted = false;
+	private bool controlsDisabled = false;
 
 	public float jumpStrength = 4f;
 	public float fallStrengthFactor = 4f;
@@ -38,26 +39,29 @@ public class PlayerController : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-		checkMovement ();
-		checkActionButtons ();
-		checkTriggerButtons ();
-		checkStickButtons ();
-		playerRB.rotation = Quaternion.identity; //prevent player object from rotating
-
-		if (Time.time >= startDashingTime + 1f && dashing == true) {
-			dashing = false;
-			playerRB.velocity = Vector3.zero;
+		if (controlsDisabled == false) {
+			checkMovement ();
 		}
+			checkActionButtons ();
+			checkTriggerButtons ();
+			checkStickButtons ();
+			playerRB.rotation = Quaternion.identity; //prevent player object from rotating
 
-		if (Time.time >= startButtonPressDelay + 0.5f && buttonPressDelay == true) { //User has to wait 0.5 seconds to repress a button
-			buttonPressDelay = false;
-		}
+			if (Time.time >= startDashingTime + 1f && dashing == true) {
+				dashing = false;
+				playerRB.velocity = Vector3.zero;
+			}
 
-		if (crouching == true) {
-			RescaleSize (new Vector3 (1.5f, 0.5f, 1.5f));
-		} else {
-			RescaleSize (Vector3.one);
-		}
+			if (Time.time >= startButtonPressDelay + 0.5f && buttonPressDelay == true) { //User has to wait 0.5 seconds to repress a button
+				buttonPressDelay = false;
+			}
+
+			if (crouching == true) {
+				RescaleSize (new Vector3 (2.1f, 0.75f, 2.1f));
+			} else {
+				RescaleSize (new Vector3 (1.5f, 1.5f, 1.5f));
+			}
+			
 	}
 
 	void checkMovement(){
@@ -102,7 +106,7 @@ public class PlayerController : MonoBehaviour {
 		}
 	}
 	void checkStickButtons(){
-		if (controller.RightStickButton == true && buttonPressDelay == false) {
+		if (controller.LeftStickButton == true && buttonPressDelay == false) {
 			if (crouching == false) {
 				startCrouchSquishTime = Time.time;
 				crouching = true;
@@ -113,6 +117,12 @@ public class PlayerController : MonoBehaviour {
 			buttonPressDelay = true;
 			startButtonPressDelay = Time.time;
 		} 
+
+		if (controller.RightStickButton == true && buttonPressDelay == false) {
+			buttonPressDelay = true;
+			startButtonPressDelay = Time.time;
+			disableControls ();
+		}
 	}
 
 	void InvertControls (){
@@ -120,6 +130,14 @@ public class PlayerController : MonoBehaviour {
 			controlsInverted = false;
 		} else {
 			controlsInverted = true;
+		}
+	}
+
+	void disableControls(){
+		if (controlsDisabled == true) {
+			controlsDisabled = false;
+		} else {
+			controlsDisabled = true;
 		}
 	}
 

@@ -13,6 +13,8 @@ public class PlayerController : MonoBehaviour {
 	private bool dashing = false;
 	private float startDashingTime;
 	private bool crouching = false;
+	private float startCrouchSquishTime;
+	private float squishDuration = 0.25f;
 
 	private float xInput, yInput, zInput;
 	private bool controlsInverted = false;
@@ -49,6 +51,12 @@ public class PlayerController : MonoBehaviour {
 
 		if (Time.time >= startButtonPressDelay + 0.5f && buttonPressDelay == true) { //User has to wait 0.5 seconds to repress a button
 			buttonPressDelay = false;
+		}
+
+		if (crouching == true) {
+			RescaleSize (new Vector3 (1.5f, 0.5f, 1.5f));
+		} else {
+			RescaleSize (Vector3.one);
 		}
 	}
 
@@ -96,11 +104,11 @@ public class PlayerController : MonoBehaviour {
 	void checkStickButtons(){
 		if (controller.RightStickButton == true && buttonPressDelay == false) {
 			if (crouching == false) {
-				this.transform.localScale = new Vector3 (1f, 0.5f, 1f);
+				startCrouchSquishTime = Time.time;
 				crouching = true;
 			} else if (crouching == true){
 				crouching = false;
-				this.transform.localScale = new Vector3 (1f, 1f, 1f);
+				startCrouchSquishTime = Time.time;
 			}
 			buttonPressDelay = true;
 			startButtonPressDelay = Time.time;
@@ -113,6 +121,13 @@ public class PlayerController : MonoBehaviour {
 		} else {
 			controlsInverted = true;
 		}
+	}
+
+	void RescaleSize(Vector3 newScale){
+
+		float t = (Time.time - startCrouchSquishTime) / squishDuration;
+
+		this.transform.localScale = Vector3.Lerp (this.transform.localScale, newScale, t);
 	}
 
 	void OnCollisionEnter(Collision other){

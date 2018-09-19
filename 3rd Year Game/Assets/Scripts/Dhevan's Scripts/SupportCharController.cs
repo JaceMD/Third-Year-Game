@@ -13,6 +13,7 @@ public class SupportCharController : MonoBehaviour {
 
 	private float xInput, yInput, zInput;
 	private bool controlsInverted = false;
+	private bool controlsDisabled = false;
 
 	public float moveSpeed = 10f;
 
@@ -41,38 +42,48 @@ public class SupportCharController : MonoBehaviour {
 			buttonPressDelay = false;
 		}
 
-		if (followMode == true) {
-			checkFollowDistance ();
-		} else {
-			checkMovement ();
-		}
-
 		if (controller.RightStickButton && buttonPressDelay == false) {
 			buttonPressDelay = true;
 			startButtonPressDelay = Time.time;
-			if (followMode == true) {
-				followMode = false;
-			} else {
+			followMode = false;
+		} 
+
+		if (followMode == false) {
+			Vector3 newPosition = new Vector3 (transform.position.x, 6f, transform.position.z);
+			this.transform.position = Vector3.Slerp (transform.position, newPosition, 4 * Time.deltaTime);
+			if (controlsDisabled == false) {
+				checkMovement ();
+			}
+			if (controller.Action4) {
 				followMode = true;
 			}
-		} 
+		} else {
+			checkFollowDistance ();
+		}
 
 	}
 
 	void FixedUpdate(){
-
 
 		RaycastHit hit;
 		for (int loop = 0; loop < 4; loop++) {
 			lightDetectionRays [loop] = new Ray (transform.position, pRCTargets [loop].transform.position - transform.position);
 			Debug.DrawLine (transform.position,  pRCTargets [loop].transform.position, Color.red);
 
-			if (Physics.Raycast(lightDetectionRays [loop], out hit, 20f) && (hit.transform.gameObject.tag == "PRCTarget")) {
+			if (Physics.Raycast(lightDetectionRays [loop], out hit, 15f) && (hit.transform.gameObject.tag == "PRCTarget")) {
 				Debug.DrawLine(hit.point, hit.point + Vector3.up*2f, Color.green);
 				//Debug.Log ("Check");
 			}
 		}
+	}
 
+	void DisableControls(){
+		controlsDisabled = true;
+		Debug.Log ("Supp controls disabled");
+	}
+	void EnableControls(){
+		controlsDisabled = false;
+		Debug.Log ("Supp controls enabled");
 	}
 
 	void checkMovement(){

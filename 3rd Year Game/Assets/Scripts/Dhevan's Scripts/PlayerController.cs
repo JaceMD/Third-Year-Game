@@ -41,9 +41,9 @@ public class PlayerController : MonoBehaviour {
 	void Update () {
 		if (controlsDisabled == false) {
 			checkMovement ();
-		}
 			checkActionButtons ();
-			checkTriggerButtons ();
+		}
+			//checkTriggerButtons ();
 			checkStickButtons ();
 			playerRB.rotation = Quaternion.identity; //prevent player object from rotating
 
@@ -106,7 +106,7 @@ public class PlayerController : MonoBehaviour {
 		}
 	}
 	void checkStickButtons(){
-		if (controller.LeftStickButton == true && buttonPressDelay == false) {
+		if (controller.LeftStickButton == true && buttonPressDelay == false && controlsDisabled == false) {
 			if (crouching == false) {
 				startCrouchSquishTime = Time.time;
 				crouching = true;
@@ -118,11 +118,7 @@ public class PlayerController : MonoBehaviour {
 			startButtonPressDelay = Time.time;
 		} 
 
-		if (controller.RightStickButton == true && buttonPressDelay == false) {
-			buttonPressDelay = true;
-			startButtonPressDelay = Time.time;
-			disableControls ();
-		}
+
 	}
 
 	void InvertControls (){
@@ -133,12 +129,13 @@ public class PlayerController : MonoBehaviour {
 		}
 	}
 
-	void disableControls(){
-		if (controlsDisabled == true) {
-			controlsDisabled = false;
-		} else {
-			controlsDisabled = true;
-		}
+	void DisableControls(){
+		controlsDisabled = true;
+		Debug.Log ("Player controls disabled");
+	}
+	void EnableControls(){
+		controlsDisabled = false;
+		Debug.Log ("Player controls enabled");
 	}
 
 	void RescaleSize(Vector3 newScale){

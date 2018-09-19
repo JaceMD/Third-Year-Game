@@ -123,6 +123,7 @@ GameObject:
   - component: {fileID: 59269486}
   - component: {fileID: 59269485}
   - component: {fileID: 59269484}
+  - component: {fileID: 59269487}
   m_Layer: 0
   m_Name: Fireflies
   m_TagString: Untagged
@@ -3813,7 +3814,7 @@ ParticleSystem:
     rangeCurve:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 3.5
+      scalar: 5
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -3866,7 +3867,7 @@ ParticleSystem:
     intensityCurve:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 2.5
+      scalar: 1.5
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -3916,7 +3917,7 @@ ParticleSystem:
         m_PreInfinity: 2
         m_PostInfinity: 2
         m_RotationOrder: 4
-    maxLights: 20
+    maxLights: 10
   TrailModule:
     enabled: 1
     mode: 0
@@ -4752,6 +4753,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
+--- !u!114 &59269487
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 59269483}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5dc888f68227afc4bb1ac15861529138, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerRCTarget1: {fileID: 975468348}
+  playerRCTarget2: {fileID: 959934013}
+  playerRCTarget3: {fileID: 1120511545}
+  playerRCTarget4: {fileID: 248940138}
 --- !u!1 &170076733
 GameObject:
   m_ObjectHideFlags: 0
@@ -5078,6 +5094,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerT: {fileID: 1411106953}
+  supportT: {fileID: 2080715470}
   followTime: 0.15
   FollowSpeed: 4
   xPosOffset: 0
@@ -5892,6 +5909,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1999265463}
+  - component: {fileID: 1999265464}
   m_Layer: 0
   m_Name: Game Manager
   m_TagString: Untagged
@@ -5912,6 +5930,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1999265464
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1999265462}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68b08d3a375759541a48a56100db05f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2033671637
 GameObject:
   m_ObjectHideFlags: 0

@@ -704,7 +704,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Radius: 5
-  Angle: 90
+  Angle: 45
   PlayerMask:
     serializedVersion: 2
     m_Bits: 512

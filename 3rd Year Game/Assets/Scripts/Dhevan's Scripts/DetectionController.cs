@@ -9,6 +9,7 @@ public class DetectionController : MonoBehaviour {
 	public Image detectionUIImage;
 
 	private float alphaPercentage;
+	public SanityController sanity;
 
 	// Use this for initialization
 	void Start () {
@@ -41,27 +42,39 @@ public class DetectionController : MonoBehaviour {
 
 		detectionUIImage.color = new Color(detectionUIImage.color.r, detectionUIImage.color.g, detectionUIImage.color.b, actualAlpha);
 
+
 		//check distance alpha
 	}
 	float checkVisibilityAlphaRatio(){
 		int numPRCTargetsVisible = 0;
-		float alphaRatio;
 
 		for (int i = 0; i < 9; i++) {
 			if (pRCTargetsVisible [i] == true) {
 				numPRCTargetsVisible++;
 			}
 		}
-		alphaRatio = numPRCTargetsVisible / 9f;
-		return alphaRatio;
+		alphaPercentage = numPRCTargetsVisible / 9f;
+		//update Sanity levels
+		sanity.checkLightExposure(alphaPercentage);
+
+		return alphaPercentage;
 
 	}
 	float checkDistanceAlpha(float distance){
 		return 0f;
 	}
+
+	public bool isPlayerInLight(){
+		if (alphaPercentage > 0.6f) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 	void playerDetected(){
 		detectionUIImage.color = new Color(1f, 0f, 0f, 1f);
 	}
+
 
 
 

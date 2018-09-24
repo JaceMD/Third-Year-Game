@@ -12,6 +12,7 @@ public class EnemySightController : MonoBehaviour{
     public List<Transform> VisibleTargets = new List<Transform>();
 
     public GameObject Player;
+	private bool playerInLight = false;
 
     public EnemyController Movement;
 
@@ -65,7 +66,8 @@ public class EnemySightController : MonoBehaviour{
     // Update is called once per frame
     void Update()
     {
-        if (VisibleTargets.Contains(Player.transform))
+		playerInLight = Player.GetComponent<DetectionController> ().isPlayerInLight ();
+		if (VisibleTargets.Contains(Player.transform) && playerInLight == true)
         {
             Movement.MoveToPlayer = true;
         }

@@ -6,6 +6,7 @@ using InControl;
 public class SupportCharController : MonoBehaviour {
 
 	private InputDevice controller;
+	public GameObject player;
 	public Transform playerT;
 	public float xPosMaxOffset, yPosMaxOffset, zPosMaxOffset;
 	public float suppCharFollowSpeed = 4f;
@@ -15,13 +16,12 @@ public class SupportCharController : MonoBehaviour {
 	private bool controlsInverted = false;
 	private bool controlsDisabled = false;
 
+
 	public float moveSpeed = 10f;
 
-	public GameObject playerObj;
-	public GameObject playerRCTarget1, playerRCTarget2, playerRCTarget3, playerRCTarget4;
-
-	private Ray[] lightDetectionRays = new Ray[4];
-	private GameObject[] pRCTargets = new GameObject[4];
+	private bool drawRayCasts = false;
+	private Ray[] lightDetectionRays = new Ray[9];
+	public GameObject[] pRCTargets = new GameObject[9];
 
 	private bool buttonPressDelay = false;
 	private float startButtonPressDelay; //Since Incontrol doesnt have a getDown method, this is used to check for single button presses.
@@ -29,10 +29,6 @@ public class SupportCharController : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		controller = InputManager.ActiveDevice;
-		pRCTargets [0] = playerRCTarget1;
-		pRCTargets [1] = playerRCTarget2;
-		pRCTargets [2] = playerRCTarget3;
-		pRCTargets [3] = playerRCTarget4;
 		followMode = true;
 	}
 	
@@ -65,14 +61,19 @@ public class SupportCharController : MonoBehaviour {
 
 	void FixedUpdate(){
 
-		RaycastHit hit;
-		for (int loop = 0; loop < 4; loop++) {
-			lightDetectionRays [loop] = new Ray (transform.position, pRCTargets [loop].transform.position - transform.position);
-			Debug.DrawLine (transform.position,  pRCTargets [loop].transform.position, Color.red);
+		if (drawRayCasts == true) {
+			RaycastHit hit;
+			for (int loop = 0; loop < 9; loop++) {
+				lightDetectionRays [loop] = new Ray (transform.position, pRCTargets [loop].transform.position - transform.position);
+				Debug.DrawLine (transform.position,  pRCTargets [loop].transform.position, Color.red);
 
-			if (Physics.Raycast(lightDetectionRays [loop], out hit, 15f) && (hit.transform.gameObject.tag == "PRCTarget")) {
-				Debug.DrawLine(hit.point, hit.point + Vector3.up*2f, Color.green);
-				//Debug.Log ("Check");
+				if (Physics.Raycast (lightDetectionRays [loop], out hit, 8f) && ((hit.transform.gameObject.tag == "PRCTarget") || hit.transform.gameObject.tag == "Player")) {
+					player.GetComponent<DetectionController> ().setPRCTargetVisible (loop, true);
+					Debug.DrawLine (hit.point, hit.point + Vector3.up * 2f, Color.green);
+					//Debug.Log ("Hit");
+				} else {
+					player.GetComponent<DetectionController> ().setPRCTargetVisible (loop, false);
+				}
 			}
 		}
 	}
@@ -101,10 +102,6 @@ public class SupportCharController : MonoBehaviour {
 		this.transform.Translate(Movement, Space.World); 
 	}
 
-	void SpotlightMode(){
-
-	}
-
 	void checkFollowDistance(){
 
 		if (Mathf.Abs (this.transform.position.x - playerT.position.x) > xPosMaxOffset) {
@@ -120,6 +117,18 @@ public class SupportCharController : MonoBehaviour {
 		if (Mathf.Abs (this.transform.position.z - playerT.position.z) > zPosMaxOffset) {
 			Vector3 newPosition = new Vector3 (transform.position.x, transform.position.y, playerT.position.z);
 			this.transform.position = Vector3.Slerp (transform.position, newPosition, suppCharFollowSpeed * Time.deltaTime);
+		}
+	}
+
+	void OnTriggerEnter(Collider other){
+		if (other.gameObject.tag == "Player") {
+			drawRayCasts = true;
+		}
+	}
+
+	void OnTriggerExit(Collider other){
+		if (other.gameObject.tag == "Player") {
+			drawRayCasts = false;
 		}
 	}
 }

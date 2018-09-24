@@ -4,19 +4,18 @@ using UnityEngine;
 
 public class FireflyController : MonoBehaviour {
 
-	private GameObject playerObj;
-	public GameObject playerRCTarget1, playerRCTarget2, playerRCTarget3, playerRCTarget4;
+	public GameObject player;
 
-	private Ray[] lightDetectionRays = new Ray[4];
-	private GameObject[] pRCTargets = new GameObject[4];
+	private Ray[] lightDetectionRays = new Ray[9];
+	public GameObject[] pRCTargets = new GameObject[9];
+
+	private bool drawRayCasts = false;
 
 	// Use this for initialization
 	void Start () {
-		playerObj = GameObject.Find ("Player");
-		pRCTargets [0] = playerRCTarget1;
-		pRCTargets [1] = playerRCTarget2;
-		pRCTargets [2] = playerRCTarget3;
-		pRCTargets [3] = playerRCTarget4;
+		drawRayCasts = false;
+		//player = GameObject.Find ("Player");
+
 	}
 	
 	// Update is called once per frame
@@ -24,16 +23,32 @@ public class FireflyController : MonoBehaviour {
 		
 	}
 	void FixedUpdate(){
+		if (drawRayCasts == true) {
+			RaycastHit hit;
+			for (int loop = 0; loop < 9; loop++) {
+				lightDetectionRays [loop] = new Ray (transform.position, pRCTargets [loop].transform.position - transform.position);
+				Debug.DrawLine (transform.position,  pRCTargets [loop].transform.position, Color.red);
 
-		RaycastHit hit;
-		for (int loop = 0; loop < 4; loop++) {
-			lightDetectionRays [loop] = new Ray (transform.position, pRCTargets [loop].transform.position - transform.position);
-			Debug.DrawLine (transform.position,  pRCTargets [loop].transform.position, Color.red);
-
-			if (Physics.Raycast(lightDetectionRays [loop], out hit, 5f) && (hit.transform.gameObject.tag == "PRCTarget")) {
-				Debug.DrawLine(hit.point, hit.point + Vector3.up*2f, Color.green);
-				//Debug.Log ("Check");
+				if (Physics.Raycast (lightDetectionRays [loop], out hit, 8f) && ((hit.transform.gameObject.tag == "PRCTarget") || hit.transform.gameObject.tag == "Player")) {
+					player.GetComponent<DetectionController> ().setPRCTargetVisible (loop, true);
+					Debug.DrawLine (hit.point, hit.point + Vector3.up * 2f, Color.green);
+					//Debug.Log ("Hit");
+				} else {
+					player.GetComponent<DetectionController> ().setPRCTargetVisible (loop, false);
+				}
 			}
+		}
+	}
+
+	void OnTriggerEnter(Collider other){
+		if (other.gameObject.tag == "Player") {
+			drawRayCasts = true;
+		}
+	}
+
+	void OnTriggerExit(Collider other){
+		if (other.gameObject.tag == "Player") {
+			drawRayCasts = false;
 		}
 	}
 }

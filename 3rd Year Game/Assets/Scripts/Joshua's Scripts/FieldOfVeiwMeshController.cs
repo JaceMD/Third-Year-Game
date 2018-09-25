@@ -26,7 +26,7 @@ public class FieldOfVeiwMeshController : MonoBehaviour {
     void Start () {
 
         Radius = SightValues.Radius;
-        angle = SightValues.Angle / 5;
+        angle = SightValues.Angle / 2.5f;
 
         var MeshF = gameObject.AddComponent<MeshFilter>();
         var MeshR = gameObject.AddComponent<MeshRenderer>();

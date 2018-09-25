@@ -172,6 +172,7 @@ public class PlayerController : MonoBehaviour
 	{
 		if (other.gameObject.tag == "Platform") {
 			jumped = false;
+			playerRB.velocity = Vector3.zero;
 		} else if (other.gameObject.tag == "Enemy") {
 			Scene thisScene = SceneManager.GetActiveScene ();
 			SceneManager.LoadScene (thisScene.name);

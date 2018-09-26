@@ -47,7 +47,9 @@ public class SanityController : MonoBehaviour {
 			finalSanity = 0f;
 		}
 		sanityBar.value = finalSanity;
+	}
 
-
+	public float getSanityLevel(){
+		return finalSanity;
 	}
 }

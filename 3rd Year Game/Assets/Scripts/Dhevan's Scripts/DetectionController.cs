@@ -29,18 +29,18 @@ public class DetectionController : MonoBehaviour {
 
 	void updateAlphaUI(){
 		float alpha = checkVisibilityAlphaRatio ();
-		float actualAlpha = detectionUIImage.color.a;
+		alphaPercentage = detectionUIImage.color.a;
 
 		//Fade Alpha over time smoothly
-		if (actualAlpha > alpha) {
-			actualAlpha -= Time.deltaTime;
-		} else if (actualAlpha < alpha) {
-			actualAlpha += Time.deltaTime;
+		if (alphaPercentage > alpha) {
+			alphaPercentage -= Time.deltaTime;
+		} else if (alphaPercentage < alpha) {
+			alphaPercentage += Time.deltaTime;
 		} else {
-			actualAlpha = alpha;
+			alphaPercentage = alpha;
 		}
 
-		detectionUIImage.color = new Color(detectionUIImage.color.r, detectionUIImage.color.g, detectionUIImage.color.b, actualAlpha);
+		detectionUIImage.color = new Color(detectionUIImage.color.r, detectionUIImage.color.g, detectionUIImage.color.b, alphaPercentage);
 
 
 		//check distance alpha
@@ -71,8 +71,11 @@ public class DetectionController : MonoBehaviour {
 			return false;
 		}
 	}
-	void playerDetected(){
+	public void playerDetected(){
 		detectionUIImage.color = new Color(1f, 0f, 0f, 1f);
+	}
+	public void playerUndetected(){
+		detectionUIImage.color = new Color(1f, 1f, 1f, alphaPercentage);
 	}
 
 

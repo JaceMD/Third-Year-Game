@@ -1108,16 +1108,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 114610264267926992, guid: a6889439c0ab8444ab179ddb586a0b15,
-        type: 2}
-      propertyPath: Player
-      value: 
-      objectReference: {fileID: 1411106948}
-    - target: {fileID: 114929981502852868, guid: a6889439c0ab8444ab179ddb586a0b15,
-        type: 2}
-      propertyPath: Player
-      value: 
-      objectReference: {fileID: 1411106948}
     - target: {fileID: 114929981502852868, guid: a6889439c0ab8444ab179ddb586a0b15,
         type: 2}
       propertyPath: Waypoints.Array.data[0]
@@ -1128,14 +1118,27 @@ Prefab:
       propertyPath: Waypoints.Array.data[1]
       value: 
       objectReference: {fileID: 2094107232}
-    - target: {fileID: 1631728284799522, guid: a6889439c0ab8444ab179ddb586a0b15, type: 2}
-      propertyPath: m_TagString
-      value: Enemy
-      objectReference: {fileID: 0}
+    - target: {fileID: 114929981502852868, guid: a6889439c0ab8444ab179ddb586a0b15,
+        type: 2}
+      propertyPath: Player
+      value: 
+      objectReference: {fileID: 1411106948}
     - target: {fileID: 114610264267926992, guid: a6889439c0ab8444ab179ddb586a0b15,
         type: 2}
-      propertyPath: Radius
-      value: 5
+      propertyPath: Player
+      value: 
+      objectReference: {fileID: 1411106948}
+    - target: {fileID: 4275868483565480, guid: a6889439c0ab8444ab179ddb586a0b15, type: 2}
+      propertyPath: m_LocalScale.x
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4275868483565480, guid: a6889439c0ab8444ab179ddb586a0b15, type: 2}
+      propertyPath: m_LocalScale.y
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4275868483565480, guid: a6889439c0ab8444ab179ddb586a0b15, type: 2}
+      propertyPath: m_LocalScale.z
+      value: 1.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a6889439c0ab8444ab179ddb586a0b15, type: 2}

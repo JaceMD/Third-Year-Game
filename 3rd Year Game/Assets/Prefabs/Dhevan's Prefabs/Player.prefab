@@ -58,6 +58,7 @@ GameObject:
   - component: {fileID: 54181667485473000}
   - component: {fileID: 114615035523723094}
   - component: {fileID: 114883708364605632}
+  - component: {fileID: 114132189934389380}
   m_Layer: 9
   m_Name: Player
   m_TagString: Player
@@ -809,6 +810,21 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &114132189934389380
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1163148616806342}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8bbe0ec229a37d438c3e5999a389151, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sanityBar: {fileID: 0}
+  sanitySliderSpeed: 1
+  sanityIncrementGain: 5
+  sanityDecrementLoss: 2
 --- !u!114 &114615035523723094
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -821,8 +837,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 10
-  dashSpeedFactor: 30
   crouchSpeed: 5
+  dashSpeedFactor: 15
+  DashTime: 0.25
+  delayDashTime: 2
   jumpStrength: 4
   fallStrengthFactor: 4
   jumpHeight: 1.5
@@ -839,6 +857,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pRCTargetsVisible: 000000000000000000
   detectionUIImage: {fileID: 0}
+  sanity: {fileID: 114132189934389380}
 --- !u!135 &135107273850381098
 SphereCollider:
   m_ObjectHideFlags: 1

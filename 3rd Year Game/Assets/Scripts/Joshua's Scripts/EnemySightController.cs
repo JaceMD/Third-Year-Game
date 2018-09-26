@@ -13,6 +13,7 @@ public class EnemySightController : MonoBehaviour{
 
     public GameObject Player;
 	private bool playerInLight = false;
+	public float minDistanceDetection = 3.5f;
 
     public EnemyController Movement;
 
@@ -67,13 +68,17 @@ public class EnemySightController : MonoBehaviour{
     void Update()
     {
 		playerInLight = Player.GetComponent<DetectionController> ().isPlayerInLight ();
-		if (VisibleTargets.Contains(Player.transform) && playerInLight == true)
+		float distance = Mathf.Abs(Vector3.Distance(transform.position, Player.transform.position));
+
+		if (VisibleTargets.Contains(Player.transform) && (playerInLight == true ||distance <= minDistanceDetection))
         {
             Movement.MoveToPlayer = true;
+			Player.GetComponent<DetectionController> ().playerDetected ();
         }
-        else
+       /* else
         {
             Movement.MoveToPlayer = false;
-        }
+			Player.GetComponent<DetectionController> ().playerUndetected ();
+        }*/
     }
 }

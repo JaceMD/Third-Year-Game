@@ -19,6 +19,7 @@ public class GameManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		/*
 		if (controller.RightStickButton && buttonPressDelay == false) {
 			if (cameraOnPlayer == true) {
 				cameraOnPlayer = false;
@@ -32,6 +33,7 @@ public class GameManager : MonoBehaviour {
 			buttonPressDelay = true;
 			startButtonPressDelay = Time.time;
 		}
+		*/
 
 		if (Time.time >= startButtonPressDelay + 0.5f && buttonPressDelay == true) { //User has to wait 0.5 seconds to repress a button
 			buttonPressDelay = false;

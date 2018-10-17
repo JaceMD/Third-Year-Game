@@ -65,7 +65,7 @@ public class DetectionController : MonoBehaviour {
 	}
 
 	public bool isPlayerInLight(){
-		if (alphaPercentage > 0.6f) {
+		if (alphaPercentage > 0.5f) {
 			return true;
 		} else {
 			return false;
@@ -77,6 +77,7 @@ public class DetectionController : MonoBehaviour {
 	public void playerUndetected(){
 		detectionUIImage.color = new Color(1f, 1f, 1f, alphaPercentage);
 	}
+
 
 
 

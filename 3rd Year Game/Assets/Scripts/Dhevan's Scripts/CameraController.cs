@@ -55,6 +55,7 @@ public class CameraController : MonoBehaviour
 			cameraFlipping = false;
 		}
 		*/
+		/*
 		if (controller.RightStickButton && buttonPressDelay == false) {
 			buttonPressDelay = true;
 			startButtonPressDelay = Time.time;
@@ -67,7 +68,7 @@ public class CameraController : MonoBehaviour
 				camOnPlayer= true;
 			}
 		}
-
+		*/
 		if (Time.time >= startButtonPressDelay + 0.5f && buttonPressDelay == true) { //User has to wait 0.5 seconds to repress a button
 			buttonPressDelay = false;
 		}

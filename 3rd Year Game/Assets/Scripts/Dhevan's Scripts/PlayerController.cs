@@ -10,12 +10,13 @@ public class PlayerController : MonoBehaviour
 
 	public float moveSpeed = 10f;
 	public float crouchSpeed = 5f;
+	private float actualSpeed;
 
 	private bool dashing = false;
 	private float startDashTime;
 	public float dashSpeedFactor = 30f;
 	public float DashTime = 0.1f;
-	public float delayDashTime = 3f;
+	public float delayDashTime = 1f;
 
 	private bool crouching = false;
 	private float startCrouchSquishTime;
@@ -25,11 +26,11 @@ public class PlayerController : MonoBehaviour
 	private bool controlsInverted = false;
 	private bool controlsDisabled = false;
 
-	public float jumpStrength = 4f;
-	public float fallStrengthFactor = 4f;
-	private bool jumped = false;
-	public float jumpHeight = 1.5f;
-	private Vector3 jumpPos;
+	public float jumpForce = 3.5f;
+	public float fallMultiplier = 2.5f;
+	private bool jumpRequest = false;
+	private bool canJump = false;
+
 
 	private bool buttonPressDelay = false;
 	private float startButtonPressDelay;
@@ -43,6 +44,7 @@ public class PlayerController : MonoBehaviour
 		controller = InputManager.ActiveDevice;
 		playerRB = this.GetComponent<Rigidbody> ();
 		delayDashTime = 3f;
+		actualSpeed = moveSpeed;
 	}
 
 	// Update is called once per frame
@@ -72,6 +74,25 @@ public class PlayerController : MonoBehaviour
 			RescaleSize (new Vector3 (1.5f, 1.5f, 1.5f));
 		}
 			
+
+	}
+
+	void FixedUpdate(){
+		if (jumpRequest == true) {
+			playerRB.AddForce (Vector3.up * jumpForce, ForceMode.Impulse);
+			jumpRequest = false;
+		}
+
+		if (playerRB.velocity.y < 0f) {
+			playerRB.useGravity = false;
+			Vector3 gravityForce = Vector3.up * -9.81f * (fallMultiplier);
+			playerRB.AddForce (gravityForce, ForceMode.Acceleration);
+
+		} else if (playerRB.velocity.y > 0f) {
+			playerRB.useGravity = true;
+		} else if (playerRB.velocity.y == 0f) {
+			playerRB.useGravity = true;
+		}
 	}
 
 	void checkMovement ()
@@ -86,7 +107,7 @@ public class PlayerController : MonoBehaviour
 		}
 		Vector3 Movement = Vector3.zero;
 		if (crouching == false) {
-			Movement = new Vector3 (xInput, 0f, zInput) * Time.deltaTime * moveSpeed;
+			Movement = new Vector3 (xInput, 0f, zInput) * Time.deltaTime * actualSpeed;
 		} else if (crouching == true) {
 			Movement = new Vector3 (xInput, 0f, zInput) * Time.deltaTime * crouchSpeed;
 		}
@@ -96,17 +117,11 @@ public class PlayerController : MonoBehaviour
 	void checkActionButtons ()
 	{
 		//Check Jump Action
-		if ((controller.Action1 || Input.GetKey (KeyCode.Space)) && jumped == false) {
-			playerRB.AddForce (new Vector3 (0f, jumpStrength * 100f, 0f), ForceMode.Force);
-			jumped = true;
-			jumpPos = this.transform.position;
+		if ((controller.Action1 || Input.GetKey (KeyCode.Space)) && canJump == true) {
+			jumpRequest = true;
+			canJump = false;
 		} 
-		//Add a fall force after the jump
-		else if (jumped == true) {
-			if (this.transform.position.y - jumpPos.y >= jumpHeight) {
-				playerRB.AddForce (new Vector3 (0f, -1f * (jumpStrength * 50f / fallStrengthFactor), 0f), ForceMode.Force);
-			}
-		}
+
 			
 	}
 
@@ -118,7 +133,7 @@ public class PlayerController : MonoBehaviour
 			startDashTime = Time.time;
 			Debug.Log ("Dashed");
 			buttonPressDelay = true;
-			delayDashTime = 3f;
+			delayDashTime = 1f;
 		}
 	}
 
@@ -171,11 +186,24 @@ public class PlayerController : MonoBehaviour
 	void OnCollisionEnter (Collision other)
 	{
 		if (other.gameObject.tag == "Platform") {
-			jumped = false;
+			canJump = true;
 			playerRB.velocity = Vector3.zero;
+			actualSpeed = moveSpeed;
 		} else if (other.gameObject.tag == "Enemy") {
-			Scene thisScene = SceneManager.GetActiveScene ();
-			SceneManager.LoadScene (thisScene.name);
+			GameObject.Find ("SceneController").GetComponent<SceneController> ().RestartLevel ();
 		}
 	}
+
+	void OnCollisionExit(Collision other){
+		if (other.gameObject.tag == "Platform") {
+			canJump = false;
+		} 
+	}
+
+	void OnCollisionStay(Collision other){
+		if (other.gameObject.tag == "Platform") {
+			actualSpeed = moveSpeed;
+		} 
+	}
+	
 }

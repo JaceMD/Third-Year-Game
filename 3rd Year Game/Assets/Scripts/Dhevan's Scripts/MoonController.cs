@@ -7,27 +7,26 @@ public class MoonController : MonoBehaviour {
 
 	private InputDevice controller;
 
-	private bool moonRotationEnabled = false;
+	private bool moonEnabled = false;
 	public Transform moonTransform;
 	public float moonRotationSpeed = 5f;
 
 	private bool controlsInverted = false;
 	public GameObject moonObj;
-	public GameObject playerObj;
-	public GameObject playerRCTarget1, playerRCTarget2, playerRCTarget3, playerRCTarget4;
+	public GameObject player;
 
-	private Ray[] lightDetectionRays = new Ray[4];
-	private GameObject[] pRCTargets = new GameObject[4];
+	private Ray[] lightDetectionRays = new Ray[9];
+	public GameObject[] pRCTargets = new GameObject[9];
+
+	public GameObject moonDirLight;
+	public GameObject suppPtLight;
+	private float lightValue1 = 0f, lightValue2 = 20f;
 
 
 
 	// Use this for initialization
 	void Start () {
 		controller = InputManager.ActiveDevice;
-		pRCTargets [0] = playerRCTarget1;
-		pRCTargets [1] = playerRCTarget2;
-		pRCTargets [2] = playerRCTarget3;
-		pRCTargets [3] = playerRCTarget4;
 	}
 	
 	// Update is called once per frame
@@ -36,24 +35,51 @@ public class MoonController : MonoBehaviour {
 			//moonRotationEnabled = true;
 			MoonRotationControls();
 
+			lightValue1 += Time.deltaTime * 70f;
+			if(lightValue1>100f){
+				lightValue1 = 100f;
+			}
+			moonDirLight.GetComponent<Light> ().range = lightValue1;
+
+			lightValue2 -= Time.deltaTime * 20f;
+			if(lightValue2<0f){
+				lightValue2 = 0f;
+			}
+			suppPtLight.GetComponent<Light> ().range = lightValue2;
+
 		} else {
 			//moonRotationEnabled = false;
+			lightValue1 -= Time.deltaTime * 70f;
+			if(lightValue1<=0f){
+				lightValue1 = 0f;
+			}
+			moonDirLight.GetComponent<Light> ().range = lightValue1;
+
+			lightValue2 += Time.deltaTime * 20f;
+			if(lightValue2>20f){
+				lightValue2 = 20f;
+			}
+			suppPtLight.GetComponent<Light> ().range = lightValue2;
 		}
 			
-		this.transform.position = new Vector3 (playerObj.transform.position.x, this.transform.position.y, playerObj.transform.position.z);
+		Vector3 newPos = new Vector3 (player.transform.position.x, 4.5f, player.transform.position.z);
+		this.transform.position = Vector3.Slerp (transform.position, newPos, 2f * Time.deltaTime);
 	}
 
 	void FixedUpdate(){
+		if (controller.LeftTrigger) {
+			RaycastHit hit;
+			for (int loop = 0; loop < 9; loop++) {
+				lightDetectionRays [loop] = new Ray (moonObj.transform.position, pRCTargets [loop].transform.position - moonObj.transform.position);
+				Debug.DrawLine (moonObj.transform.position, pRCTargets [loop].transform.position, Color.red);
 
-
-		RaycastHit hit;
-		for (int loop = 0; loop < 4; loop++) {
-			lightDetectionRays [loop] = new Ray (moonObj.transform.position, pRCTargets [loop].transform.position - moonObj.transform.position);
-			Debug.DrawLine (moonObj.transform.position,  pRCTargets [loop].transform.position, Color.red);
-
-			if (Physics.Raycast(lightDetectionRays [loop], out hit, 20f) && (hit.transform.gameObject.tag == "PRCTarget")) {
-				Debug.DrawLine(hit.point, hit.point + Vector3.up*2f, Color.green);
-				//Debug.Log ("Check");
+				if (Physics.Raycast (lightDetectionRays [loop], out hit, 20f) && ((hit.transform.gameObject.tag == "PRCTarget") || hit.transform.gameObject.tag == "Player")) {
+					player.GetComponent<DetectionController> ().setPRCTargetVisible (loop, true);
+					Debug.DrawLine (hit.point, hit.point + Vector3.up * 2f, Color.green);
+					//Debug.Log ("Hit");
+				} else {
+					player.GetComponent<DetectionController> ().setPRCTargetVisible (loop, false);
+				}
 			}
 		}
 
@@ -63,15 +89,15 @@ public class MoonController : MonoBehaviour {
 		float xInput = controller.RightStick.X;
 		if (controlsInverted == false) {
 			if (xInput > 0f) {
-				moonTransform.eulerAngles = new Vector3 (0f, moonTransform.eulerAngles.y - moonRotationSpeed, 0f);
-			} else if (xInput < 0f) {
 				moonTransform.eulerAngles = new Vector3 (0f, moonTransform.eulerAngles.y + moonRotationSpeed, 0f);
+			} else if (xInput < 0f) {
+				moonTransform.eulerAngles = new Vector3 (0f, moonTransform.eulerAngles.y - moonRotationSpeed, 0f);
 			}
 		} else {
 			if (xInput > 0f) {
-				moonTransform.eulerAngles = new Vector3 (0f, moonTransform.eulerAngles.y + moonRotationSpeed, 0f);
-			} else if (xInput < 0f) {
 				moonTransform.eulerAngles = new Vector3 (0f, moonTransform.eulerAngles.y - moonRotationSpeed, 0f);
+			} else if (xInput < 0f) {
+				moonTransform.eulerAngles = new Vector3 (0f, moonTransform.eulerAngles.y + moonRotationSpeed, 0f);
 			}
 		}
 	}
@@ -82,5 +108,12 @@ public class MoonController : MonoBehaviour {
 		} else {
 			controlsInverted = true;
 		}
+	}
+
+	public void enableMoonlight(){
+		moonEnabled = true;
+	}
+	public void disableMoonlight(){
+		moonEnabled = false;
 	}
 }

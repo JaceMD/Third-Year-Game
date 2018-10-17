@@ -12,9 +12,11 @@ public class SupportCharController : MonoBehaviour {
 	public float suppCharFollowSpeed = 4f;
 	private  bool followMode = true;
 
+
 	private float xInput, yInput, zInput;
 	private bool controlsInverted = false;
 	private bool controlsDisabled = false;
+	public Transform moonObj;
 
 
 	public float moveSpeed = 10f;
@@ -37,16 +39,22 @@ public class SupportCharController : MonoBehaviour {
 		if (Time.time >= startButtonPressDelay + 0.5f && buttonPressDelay == true) { //User has to wait 0.5 seconds to repress a button
 			buttonPressDelay = false;
 		}
-
+		/*
 		if (controller.RightStickButton && buttonPressDelay == false) {
 			buttonPressDelay = true;
 			startButtonPressDelay = Time.time;
 			followMode = false;
 		} 
+		*/
+		if (controller.LeftTrigger) {
+			followMode = false;
+		} else {
+			followMode = true;
+		}
 
 		if (followMode == false) {
-			Vector3 newPosition = new Vector3 (transform.position.x, 6f, transform.position.z);
-			this.transform.position = Vector3.Slerp (transform.position, newPosition, 4 * Time.deltaTime);
+			Vector3 newPosition = new Vector3 (moonObj.position.x, moonObj.position.y, moonObj.position.z);
+			this.transform.position = Vector3.Slerp (transform.position, newPosition, 6 * Time.deltaTime);
 			if (controlsDisabled == false) {
 				checkMovement ();
 			}

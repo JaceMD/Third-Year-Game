@@ -21,7 +21,6 @@ public class SupportCharController : MonoBehaviour {
 
 	public float moveSpeed = 10f;
 
-	private bool drawRayCasts = false;
 	private Ray[] lightDetectionRays = new Ray[9];
 	public GameObject[] pRCTargets = new GameObject[9];
 
@@ -32,6 +31,7 @@ public class SupportCharController : MonoBehaviour {
 	void Start () {
 		controller = InputManager.ActiveDevice;
 		followMode = true;
+	
 	}
 	
 	// Update is called once per frame
@@ -68,8 +68,6 @@ public class SupportCharController : MonoBehaviour {
 	}
 
 	void FixedUpdate(){
-
-		if (drawRayCasts == true) {
 			RaycastHit hit;
 			for (int loop = 0; loop < 9; loop++) {
 				lightDetectionRays [loop] = new Ray (transform.position, pRCTargets [loop].transform.position - transform.position);
@@ -83,7 +81,7 @@ public class SupportCharController : MonoBehaviour {
 					player.GetComponent<DetectionController> ().setPRCTargetVisible (loop, false);
 				}
 			}
-		}
+
 	}
 
 	void DisableControls(){
@@ -128,15 +126,5 @@ public class SupportCharController : MonoBehaviour {
 		}
 	}
 
-	void OnTriggerEnter(Collider other){
-		if (other.gameObject.tag == "Player") {
-			drawRayCasts = true;
-		}
-	}
 
-	void OnTriggerExit(Collider other){
-		if (other.gameObject.tag == "Player") {
-			drawRayCasts = false;
-		}
-	}
 }

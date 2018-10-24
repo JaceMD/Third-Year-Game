@@ -21,8 +21,8 @@ GameObject:
   - component: {fileID: 4881470898527896}
   - component: {fileID: 198374826776200878}
   - component: {fileID: 199992824798113840}
-  - component: {fileID: 114566701320630076}
   - component: {fileID: 135941970029589110}
+  - component: {fileID: 114184319984717380}
   m_Layer: 0
   m_Name: Fireflies
   m_TagString: Untagged
@@ -66,14 +66,14 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1018441263880044}
   m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -10.295516, y: 4.85, z: -5.281652}
+  m_LocalPosition: {x: -2.4, y: 4.12, z: 0.82}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4569704390960058}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
---- !u!114 &114566701320630076
+--- !u!114 &114184319984717380
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -81,7 +81,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1018441263880044}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5dc888f68227afc4bb1ac15861529138, type: 3}
+  m_Script: {fileID: 11500000, guid: 50e70438ee1a3634b83f2ca2b9a90eb1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}

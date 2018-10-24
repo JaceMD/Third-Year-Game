@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using InControl;
 
-[RequireComponent(typeof(Rigidbody))]
+[RequireComponent (typeof(Rigidbody))]
 
-public class MainCharacterController : MonoBehaviour {
+public class MainCharacterController : MonoBehaviour
+{
 
 
 	private Rigidbody playerRB;
@@ -30,12 +31,23 @@ public class MainCharacterController : MonoBehaviour {
 
 	public float rotationSpeed = 10f;
 
-	private bool buttonPressDelay = false;
-	private float startButtonPressDelay;
-	//Since Incontrol doesnt have a getDown method, this is used to check for single button presses.
+	private bool jumpRequest = false;
+	private bool crawlRequest = false;
+	private bool tuckNRollRequest = false;
+	private bool disableCrawl = false;
+	private bool disableTNR = false;
+	private bool disableJump = false;
+
+	private bool rolling = false;
+	private float startTNRTime;
+	public float TNRSpeedFactor = 12f;
+	public float TNRTime = 0.2f;
+	public float delayTNRTime = 1.5f;
+
 
 	// Use this for initialization
-	void Start () {
+	void Start ()
+	{
 		controller = InputManager.ActiveDevice;
 		actualSpeed = moveSpeed;
 		playerRB = this.GetComponent<Rigidbody> ();
@@ -43,25 +55,28 @@ public class MainCharacterController : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void Update ()
+	{
 		checkOnGround ();
+		checkJumpRequest ();
+		checkCrawlRequest ();
+		checkTuckNRollRequest ();
 		checkCrawling ();
 		checkRotation ();
 
-		if (Time.time >= startButtonPressDelay + 0.35f && buttonPressDelay == true) { //User has to wait 0.5 seconds to repress a button
-			buttonPressDelay = false;
-		}
 	}
 
-	void FixedUpdate(){
+	void FixedUpdate ()
+	{
 
 		checkMovement ();
 		checkJump ();
 		checkFalling ();
+		checkTuckNRoll ();
 
 	}
 
-////////////////////////////////////////////////////////////////Primary Functions//////////////////////////////////////////////////////////////
+	////////////////////////////////////////////////////////////////Primary Functions//////////////////////////////////////////////////////////////
 
 	void checkMovement () //In Fixed Update
 	{
@@ -78,34 +93,43 @@ public class MainCharacterController : MonoBehaviour {
 		playerRB.MovePosition (transform.position + movement);
 	}
 
-	void checkJump(){ //In Fixed Update
-		//Check Jump Action
-		if ((controller.Action1 || Input.GetKey (KeyCode.Space)) && canJump == true && buttonPressDelay == false) {
-			playerRB.AddForce (Vector3.up * jumpForce, ForceMode.Impulse);
+	void checkJumpRequest ()
+	{
+		if (controller.Action1.WasPressed && canJump == true && disableJump == false && jumpRequest == false) {
+			jumpRequest = true;
 			canJump = false;
-
-			buttonPressDelay = true;
-			startButtonPressDelay = Time.time;
-		} 
-
+		}
 	}
 
-	void checkFalling(){
+	void checkJump ()
+	{ //In Fixed Update
+		//Check Jump Action
+		if (jumpRequest == true) {
+			playerRB.AddForce (Vector3.up * jumpForce, ForceMode.Impulse);
+			jumpRequest = false;
+		} 
+	}
+
+	void checkFalling ()
+	{
 		//check Falling
 		if (playerRB.velocity.y < 0f) {
 			playerRB.useGravity = false;
 			Vector3 gravityForce = Vector3.up * -9.81f * (fallMultiplier);
 			playerRB.AddForce (gravityForce, ForceMode.Acceleration);
+			playerRB.AddForce (Vector3.up * (-1f) * fallMultiplier/5f, ForceMode.Impulse);
 
 		} else if (playerRB.velocity.y > 0f) {
 			playerRB.useGravity = true;
+
 		} else if (playerRB.velocity.y == 0f) {
-			playerRB.AddForce (Vector3.up * (-1f)*jumpForce, ForceMode.Impulse);
+			playerRB.AddForce (Vector3.up * (-1f) * jumpForce, ForceMode.Impulse);
 			playerRB.useGravity = true;
 		}
 	}
 
-	void checkRotation(){
+	void checkRotation ()
+	{
 		xInput = controller.LeftStick.X;  
 		zInput = controller.LeftStick.Y;
 
@@ -117,21 +141,28 @@ public class MainCharacterController : MonoBehaviour {
 		}
 	}
 
+	void checkCrawlRequest ()
+	{
+		if (controller.LeftStickButton.WasPressed == true && disableCrawl == false && crawlRequest == false) {
+			crawlRequest = true;
+		}
+	}
 
-
-	void checkCrawling(){ //In Update
-		if (controller.LeftStickButton == true && buttonPressDelay == false) {
+	void checkCrawling ()
+	{ //In Update
+		if (crawlRequest == true) {
 			if (crawling == false) {
 				startCrawlingSquishTime = Time.time;
 				crawling = true;
-
-			} else if (crawling == true) {
+				disableJump = true;
+				disableTNR = true;
+			} else {
 				crawling = false;
 				startCrawlingSquishTime = Time.time;
-
+				disableJump = false;
+				disableTNR = false;
 			}
-			buttonPressDelay = true;
-			startButtonPressDelay = Time.time;
+			crawlRequest = false;
 		} 
 
 		if (crawling == true) {
@@ -141,18 +172,54 @@ public class MainCharacterController : MonoBehaviour {
 		}
 	}
 
-////////////////////////////////////////////////////////////////Support Functions//////////////////////////////////////////////////////////////
-
-	void checkOnGround(){
-
-		if (isGrounded == true) {
-			canJump = true;
-		} else {
-			canJump = false;
+	void checkTuckNRollRequest ()
+	{
+		if ((Mathf.Abs (xInput) > 0f || Mathf.Abs (zInput) > 0f) && controller.RightTrigger.WasPressed == true && rolling == false && delayTNRTime <= 0f && disableTNR == false && tuckNRollRequest == false) {
+			tuckNRollRequest = true;
 		}
 	}
 
-	public void SetGrounded(bool b){
+	void checkTuckNRoll ()
+	{
+		if (tuckNRollRequest == true) {
+			playerRB.AddForce (Vector3.Normalize(new Vector3 (xInput, 0f, zInput)) * TNRSpeedFactor, ForceMode.Impulse);
+			rolling = true;
+			startTNRTime = Time.time;
+
+			delayTNRTime = 1f;
+			Debug.Log ("TNR");
+			disableCrawl = true;
+			disableJump = true;
+			tuckNRollRequest = false;
+		}
+
+		if (Time.time >= startTNRTime + TNRTime && rolling == true) {
+			rolling = false;
+			playerRB.velocity = Vector3.zero;
+			disableCrawl = false;
+			disableTNR = false;
+		}
+		delayTNRTime -= Time.deltaTime;
+	}
+
+	////////////////////////////////////////////////////////////////Support Functions//////////////////////////////////////////////////////////////
+
+	void checkOnGround ()
+	{
+
+		if (isGrounded == true) {
+			canJump = true;
+			disableCrawl = false;
+			disableTNR = false;
+		} else {
+			canJump = false;
+			disableCrawl = true;
+			disableTNR = true;
+		}
+	}
+
+	public void SetGrounded (bool b)
+	{
 		isGrounded = b;
 	}
 

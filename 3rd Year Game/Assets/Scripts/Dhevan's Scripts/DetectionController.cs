@@ -9,7 +9,6 @@ public class DetectionController : MonoBehaviour {
 	public Image detectionUIImage;
 
 	private float alphaPercentage;
-	public SanityController sanity;
 
 	// Use this for initialization
 	void Start () {
@@ -54,8 +53,6 @@ public class DetectionController : MonoBehaviour {
 			}
 		}
 		alphaPercentage = numPRCTargetsVisible / 9f;
-		//update Sanity levels
-		sanity.checkLightExposure(alphaPercentage);
 
 		return alphaPercentage;
 

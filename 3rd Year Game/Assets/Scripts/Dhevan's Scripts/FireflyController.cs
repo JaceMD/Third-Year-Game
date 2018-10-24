@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class FireflyController : MonoBehaviour {
 
+
+
 	public GameObject player;
 
 	private Ray[] lightDetectionRays = new Ray[9];

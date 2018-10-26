@@ -196,8 +196,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
@@ -268,7 +268,7 @@ Prefab:
     - target: {fileID: 114883708364605632, guid: 91c38ee08f3b6b744a5d90096283952d,
         type: 2}
       propertyPath: detectionUIImage
-      value: 
+      value:
       objectReference: {fileID: 535016745}
     - target: {fileID: 114615035523723094, guid: 91c38ee08f3b6b744a5d90096283952d,
         type: 2}
@@ -288,12 +288,12 @@ Prefab:
     - target: {fileID: 114883708364605632, guid: 91c38ee08f3b6b744a5d90096283952d,
         type: 2}
       propertyPath: sanity
-      value: 
+      value:
       objectReference: {fileID: 1411106949}
     - target: {fileID: 114132189934389380, guid: 91c38ee08f3b6b744a5d90096283952d,
         type: 2}
       propertyPath: sanityBar
-      value: 
+      value:
       objectReference: {fileID: 1010817799}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 91c38ee08f3b6b744a5d90096283952d, type: 2}
@@ -342,8 +342,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   m_Material: {fileID: 0}
   m_Color: {r: 0.5283019, g: 0.5283019, b: 0.5283019, a: 1}
   m_RaycastTarget: 1
@@ -459,8 +459,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2f13de8b427df9b4d9457296dcd3c6d6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   playerT: {fileID: 1411106953}
   supportT: {fileID: 2080715470}
   followTime: 0.15
@@ -513,8 +513,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
@@ -563,8 +563,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c7b5e8de77c5b4597ae7fbfb49a95e22, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   logDebugInfo: 1
   invertYAxis: 0
   enableXInput: 0
@@ -672,62 +672,62 @@ Prefab:
     - target: {fileID: 114242162234011480, guid: 4c3813e05b04295418252bed570407ab,
         type: 2}
       propertyPath: player
-      value: 
+      value:
       objectReference: {fileID: 1411106948}
     - target: {fileID: 114242162234011480, guid: 4c3813e05b04295418252bed570407ab,
         type: 2}
       propertyPath: playerT
-      value: 
+      value:
       objectReference: {fileID: 1411106953}
     - target: {fileID: 114242162234011480, guid: 4c3813e05b04295418252bed570407ab,
         type: 2}
       propertyPath: moonObj
-      value: 
+      value:
       objectReference: {fileID: 479565501}
     - target: {fileID: 114242162234011480, guid: 4c3813e05b04295418252bed570407ab,
         type: 2}
       propertyPath: pRCTargets.Array.data[0]
-      value: 
+      value:
       objectReference: {fileID: 975468348}
     - target: {fileID: 114242162234011480, guid: 4c3813e05b04295418252bed570407ab,
         type: 2}
       propertyPath: pRCTargets.Array.data[1]
-      value: 
+      value:
       objectReference: {fileID: 959934013}
     - target: {fileID: 114242162234011480, guid: 4c3813e05b04295418252bed570407ab,
         type: 2}
       propertyPath: pRCTargets.Array.data[2]
-      value: 
+      value:
       objectReference: {fileID: 1120511545}
     - target: {fileID: 114242162234011480, guid: 4c3813e05b04295418252bed570407ab,
         type: 2}
       propertyPath: pRCTargets.Array.data[3]
-      value: 
+      value:
       objectReference: {fileID: 248940138}
     - target: {fileID: 114242162234011480, guid: 4c3813e05b04295418252bed570407ab,
         type: 2}
       propertyPath: pRCTargets.Array.data[4]
-      value: 
+      value:
       objectReference: {fileID: 1376672160}
     - target: {fileID: 114242162234011480, guid: 4c3813e05b04295418252bed570407ab,
         type: 2}
       propertyPath: pRCTargets.Array.data[5]
-      value: 
+      value:
       objectReference: {fileID: 390559172}
     - target: {fileID: 114242162234011480, guid: 4c3813e05b04295418252bed570407ab,
         type: 2}
       propertyPath: pRCTargets.Array.data[6]
-      value: 
+      value:
       objectReference: {fileID: 1945925336}
     - target: {fileID: 114242162234011480, guid: 4c3813e05b04295418252bed570407ab,
         type: 2}
       propertyPath: pRCTargets.Array.data[7]
-      value: 
+      value:
       objectReference: {fileID: 1276796989}
     - target: {fileID: 114242162234011480, guid: 4c3813e05b04295418252bed570407ab,
         type: 2}
       propertyPath: pRCTargets.Array.data[8]
-      value: 
+      value:
       objectReference: {fileID: 798835262}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4c3813e05b04295418252bed570407ab, type: 2}
@@ -880,8 +880,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: -113659843, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   m_Navigation:
     m_Mode: 3
     m_SelectOnUp: {fileID: 0}
@@ -945,8 +945,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 1077351063, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   m_HorizontalAxis: Horizontal
   m_VerticalAxis: Vertical
   m_SubmitButton: Submit
@@ -963,8 +963,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: -619905303, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   m_FirstSelected: {fileID: 0}
   m_sendNavigationEvents: 1
   m_DragThreshold: 10
@@ -1118,22 +1118,22 @@ Prefab:
     - target: {fileID: 114929981502852868, guid: a6889439c0ab8444ab179ddb586a0b15,
         type: 2}
       propertyPath: Waypoints.Array.data[0]
-      value: 
+      value:
       objectReference: {fileID: 1448048756}
     - target: {fileID: 114929981502852868, guid: a6889439c0ab8444ab179ddb586a0b15,
         type: 2}
       propertyPath: Waypoints.Array.data[1]
-      value: 
+      value:
       objectReference: {fileID: 2094107232}
     - target: {fileID: 114929981502852868, guid: a6889439c0ab8444ab179ddb586a0b15,
         type: 2}
       propertyPath: Player
-      value: 
+      value:
       objectReference: {fileID: 1411106948}
     - target: {fileID: 114610264267926992, guid: a6889439c0ab8444ab179ddb586a0b15,
         type: 2}
       propertyPath: Player
-      value: 
+      value:
       objectReference: {fileID: 1411106948}
     - target: {fileID: 4275868483565480, guid: a6889439c0ab8444ab179ddb586a0b15, type: 2}
       propertyPath: m_LocalScale.x
@@ -1169,8 +1169,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c8bbe0ec229a37d438c3e5999a389151, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   sanityBar: {fileID: 1010817799}
   sanitySliderSpeed: 1
   sanityIncrementGain: 5
@@ -1327,8 +1327,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
@@ -1498,8 +1498,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 1301386320, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   m_IgnoreReversedGraphics: 1
   m_BlockingObjects: 0
   m_BlockingMask:
@@ -1514,8 +1514,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 1980459831, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
@@ -1614,8 +1614,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 68b08d3a375759541a48a56100db05f1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
 --- !u!1001 &2000400895
 Prefab:
   m_ObjectHideFlags: 0
@@ -1700,57 +1700,57 @@ Prefab:
     - target: {fileID: 114965726340850194, guid: 3afc489bf23504d488dd9be2510b2f00,
         type: 2}
       propertyPath: player
-      value: 
+      value:
       objectReference: {fileID: 1411106948}
     - target: {fileID: 114965726340850194, guid: 3afc489bf23504d488dd9be2510b2f00,
         type: 2}
       propertyPath: pRCTargets.Array.data[0]
-      value: 
+      value:
       objectReference: {fileID: 975468348}
     - target: {fileID: 114965726340850194, guid: 3afc489bf23504d488dd9be2510b2f00,
         type: 2}
       propertyPath: pRCTargets.Array.data[1]
-      value: 
+      value:
       objectReference: {fileID: 959934013}
     - target: {fileID: 114965726340850194, guid: 3afc489bf23504d488dd9be2510b2f00,
         type: 2}
       propertyPath: pRCTargets.Array.data[2]
-      value: 
+      value:
       objectReference: {fileID: 1120511545}
     - target: {fileID: 114965726340850194, guid: 3afc489bf23504d488dd9be2510b2f00,
         type: 2}
       propertyPath: pRCTargets.Array.data[3]
-      value: 
+      value:
       objectReference: {fileID: 248940138}
     - target: {fileID: 114965726340850194, guid: 3afc489bf23504d488dd9be2510b2f00,
         type: 2}
       propertyPath: pRCTargets.Array.data[4]
-      value: 
+      value:
       objectReference: {fileID: 1376672160}
     - target: {fileID: 114965726340850194, guid: 3afc489bf23504d488dd9be2510b2f00,
         type: 2}
       propertyPath: pRCTargets.Array.data[5]
-      value: 
+      value:
       objectReference: {fileID: 390559172}
     - target: {fileID: 114965726340850194, guid: 3afc489bf23504d488dd9be2510b2f00,
         type: 2}
       propertyPath: pRCTargets.Array.data[6]
-      value: 
+      value:
       objectReference: {fileID: 1945925336}
     - target: {fileID: 114965726340850194, guid: 3afc489bf23504d488dd9be2510b2f00,
         type: 2}
       propertyPath: pRCTargets.Array.data[7]
-      value: 
+      value:
       objectReference: {fileID: 1276796989}
     - target: {fileID: 114965726340850194, guid: 3afc489bf23504d488dd9be2510b2f00,
         type: 2}
       propertyPath: pRCTargets.Array.data[8]
-      value: 
+      value:
       objectReference: {fileID: 798835262}
     - target: {fileID: 114965726340850194, guid: 3afc489bf23504d488dd9be2510b2f00,
         type: 2}
       propertyPath: suppPtLight
-      value: 
+      value:
       objectReference: {fileID: 1817126543}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3afc489bf23504d488dd9be2510b2f00, type: 2}
@@ -1842,11 +1842,11 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &2080715470 stripped
 Transform:
-<<<<<<< HEAD
+
   m_CorrespondingSourceObject: {fileID: 4347059197909074, guid: 4c3813e05b04295418252bed570407ab,
     type: 2}
   m_PrefabInternal: {fileID: 747226587}
-=======
+
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
@@ -1868,8 +1868,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c21d5feb5923db342812033bb665b82f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   player: {fileID: 1411106948}
   playerT: {fileID: 1411106953}
   xPosMaxOffset: 2
@@ -1899,7 +1899,7 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 12
   m_Center: {x: 0, y: 0, z: 0}
->>>>>>> 6a19666bdaed1c23648181fe972f397bf2fce0cb
+
 --- !u!4 &2094107232 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4317264597762006, guid: 19bfa17a073300d4ea0e1d0802117596,
@@ -1947,52 +1947,52 @@ Prefab:
     - target: {fileID: 114566701320630076, guid: ecb0ae6b78b2699459aa6b0dd97fc9cb,
         type: 2}
       propertyPath: player
-      value: 
+      value:
       objectReference: {fileID: 1411106948}
     - target: {fileID: 114566701320630076, guid: ecb0ae6b78b2699459aa6b0dd97fc9cb,
         type: 2}
       propertyPath: pRCTargets.Array.data[0]
-      value: 
+      value:
       objectReference: {fileID: 975468348}
     - target: {fileID: 114566701320630076, guid: ecb0ae6b78b2699459aa6b0dd97fc9cb,
         type: 2}
       propertyPath: pRCTargets.Array.data[1]
-      value: 
+      value:
       objectReference: {fileID: 959934013}
     - target: {fileID: 114566701320630076, guid: ecb0ae6b78b2699459aa6b0dd97fc9cb,
         type: 2}
       propertyPath: pRCTargets.Array.data[2]
-      value: 
+      value:
       objectReference: {fileID: 1120511545}
     - target: {fileID: 114566701320630076, guid: ecb0ae6b78b2699459aa6b0dd97fc9cb,
         type: 2}
       propertyPath: pRCTargets.Array.data[3]
-      value: 
+      value:
       objectReference: {fileID: 248940138}
     - target: {fileID: 114566701320630076, guid: ecb0ae6b78b2699459aa6b0dd97fc9cb,
         type: 2}
       propertyPath: pRCTargets.Array.data[4]
-      value: 
+      value:
       objectReference: {fileID: 1376672160}
     - target: {fileID: 114566701320630076, guid: ecb0ae6b78b2699459aa6b0dd97fc9cb,
         type: 2}
       propertyPath: pRCTargets.Array.data[5]
-      value: 
+      value:
       objectReference: {fileID: 390559172}
     - target: {fileID: 114566701320630076, guid: ecb0ae6b78b2699459aa6b0dd97fc9cb,
         type: 2}
       propertyPath: pRCTargets.Array.data[6]
-      value: 
+      value:
       objectReference: {fileID: 1945925336}
     - target: {fileID: 114566701320630076, guid: ecb0ae6b78b2699459aa6b0dd97fc9cb,
         type: 2}
       propertyPath: pRCTargets.Array.data[7]
-      value: 
+      value:
       objectReference: {fileID: 1276796989}
     - target: {fileID: 114566701320630076, guid: ecb0ae6b78b2699459aa6b0dd97fc9cb,
         type: 2}
       propertyPath: pRCTargets.Array.data[8]
-      value: 
+      value:
       objectReference: {fileID: 798835262}
     - target: {fileID: 1018441263880044, guid: ecb0ae6b78b2699459aa6b0dd97fc9cb, type: 2}
       propertyPath: m_IsActive
@@ -2086,8 +2086,8 @@ Transform:
   m_Father: {fileID: 1531762776}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-<<<<<<< HEAD
-=======
+
+
 --- !u!1 &2142852259
 GameObject:
   m_ObjectHideFlags: 0
@@ -2128,8 +2128,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3ddc20950dfb26f4bafdb40aac107370, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Name:
+  m_EditorClassIdentifier:
   moonTransform: {fileID: 2142852260}
   moonRotationSpeed: 1
   moonObj: {fileID: 479565500}
@@ -2138,4 +2138,3 @@ MonoBehaviour:
   playerRCTarget2: {fileID: 959934013}
   playerRCTarget3: {fileID: 1120511545}
   playerRCTarget4: {fileID: 248940138}
->>>>>>> 6a19666bdaed1c23648181fe972f397bf2fce0cb

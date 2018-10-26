@@ -241,7 +241,7 @@ MonoBehaviour:
   player: {fileID: 0}
   playerT: {fileID: 0}
   xPosMaxOffset: 2
-  yPosMaxOffset: 3
+  yPosMaxOffset: 3.5
   zPosMaxOffset: 2
   suppCharFollowSpeed: 1.2
   followMode: 1

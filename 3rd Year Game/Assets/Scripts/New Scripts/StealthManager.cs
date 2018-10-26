@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class StealthManager : MonoBehaviour {
+public class StealthManager : MonoBehaviour
+{
 
 	public bool[] pRCTargetsVisible = new bool[9];
 	public Image detectionUIImage;
@@ -13,48 +14,54 @@ public class StealthManager : MonoBehaviour {
 	private float alphaPercentage;
 
 	// Use this for initialization
-	void Start () {
+	void Start ()
+	{
 		for (int i = 0; i < 9; i++) {
 			pRCTargetsVisible [i] = false;
 		}
 	}
 
 	// Update is called once per frame
-	void Update () {
+	void Update ()
+	{
 		updateAlphaUI ();
 	}
 
-	public void setPRCTargetVisible(int elem, bool visibility){
+	public void setPRCTargetVisible (int elem, bool visibility)
+	{
 		pRCTargetsVisible [elem] = visibility;
 	}
 
-	void updateAlphaUI(){
+	void updateAlphaUI ()
+	{
 		playerInLight = isPlayerInLight ();
 		alphaPercentage = detectionUIImage.color.a;
 
 		//Fade Alpha over time smoothly
 		if (playerInLight == true) {
-			/*
-			alphaPercentage += Time.deltaTime;
+			
+			alphaPercentage += Time.deltaTime/4f;
 			if (alphaPercentage > 1f) {
 				alphaPercentage = 1f;
-			}*/
-			detectionUIImage.color = new Color(detectionUIImage.color.r, detectionUIImage.color.g, detectionUIImage.color.b, 255f);
+
+			}
+			//detectionUIImage.color = new Color(detectionUIImage.color.r, detectionUIImage.color.g, detectionUIImage.color.b, 1f);
 		} else if (playerInLight == false) {
-			/*
-			  alphaPercentage -= Time.deltaTime;
+
+			alphaPercentage -= Time.deltaTime;
 			if (alphaPercentage < 0f) {
 				alphaPercentage = 0f;
 			}
-			 */
-			detectionUIImage.color = new Color(detectionUIImage.color.r, detectionUIImage.color.g, detectionUIImage.color.b, 0f);
+
+			//detectionUIImage.color = new Color(detectionUIImage.color.r, detectionUIImage.color.g, detectionUIImage.color.b, 0f);
 		} 
-		detectionUIImage.color = new Color(detectionUIImage.color.r, detectionUIImage.color.g, detectionUIImage.color.b, alphaPercentage);
+		detectionUIImage.color = new Color (detectionUIImage.color.r, detectionUIImage.color.g, detectionUIImage.color.b, alphaPercentage);
 	}
 
 
 
-	public bool isPlayerInLight(){
+	public bool isPlayerInLight ()
+	{
 		int numPRCTargetsVisible = 0;
 
 		for (int i = 0; i < 9; i++) {
@@ -71,11 +78,14 @@ public class StealthManager : MonoBehaviour {
 		}
 	}
 
-	public void playerDetected(){
-		detectionUIImage.color = new Color(1f, 0f, 0f, 1f);
+	public void playerDetected ()
+	{
+		detectionUIImage.color = new Color (1f, 0f, 0f, 1f);
 	}
-	public void playerUndetected(){
-		detectionUIImage.color = new Color(1f, 1f, 1f, alphaPercentage);
+
+	public void playerUndetected ()
+	{
+		detectionUIImage.color = new Color (1f, 1f, 1f, alphaPercentage);
 	}
 
 }

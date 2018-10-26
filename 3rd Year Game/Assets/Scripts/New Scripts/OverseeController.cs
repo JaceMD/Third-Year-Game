@@ -85,7 +85,10 @@ public class OverseeController : MonoBehaviour
 
 			//Reset oversee parent rotation
 			//Reset after time not instantly
-			overseeParentT.eulerAngles = new Vector3 (0f, 180f, 0f);
 		}
+	}
+
+	public void ResetOverseePos(){
+		overseeParentT.eulerAngles = new Vector3 (0f, 180f, 0f);
 	}
 }

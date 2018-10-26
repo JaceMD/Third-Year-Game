@@ -17,6 +17,8 @@ public class SuppCharController : MonoBehaviour {
 	private Ray[] lightDetectionRays = new Ray[9];
 	public GameObject[] pRCTargets = new GameObject[9];
 
+
+
 	// Use this for initialization
 	void Start () {
 		controller = InputManager.ActiveDevice;
@@ -26,8 +28,14 @@ public class SuppCharController : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		if (controller.LeftTrigger.WasPressed) {
-			followMode = !followMode;
+		if (controller.RightStickButton.WasPressed) {
+			if (followMode == true) {
+				followMode = false;
+				GameObject.Find ("Oversee").GetComponent<OverseeController> ().ResetOverseePos ();
+			} else if(followMode == false){
+				followMode = true;
+			}
+
 		}
 
 		if (followMode == true) {
@@ -56,6 +64,7 @@ public class SuppCharController : MonoBehaviour {
 		}
 
 	}
+		
 
 	void checkFollowDistance(){
 
@@ -63,11 +72,11 @@ public class SuppCharController : MonoBehaviour {
 			Vector3 newPosition = new Vector3 (playerT.position.x, transform.position.y, transform.position.z);
 			this.transform.position = Vector3.Slerp (transform.position, newPosition, suppCharFollowSpeed * Time.deltaTime);
 		}
-
+			
 		if (Mathf.Abs (this.transform.position.y - playerT.position.y) != yPosMaxOffset) {
 			Vector3 newPosition = new Vector3 (transform.position.x, playerT.position.y + yPosMaxOffset, transform.position.z);
 			this.transform.position = Vector3.Slerp (transform.position, newPosition, suppCharFollowSpeed * Time.deltaTime);
-		}
+		} 
 
 		if (Mathf.Abs (this.transform.position.z - playerT.position.z) > zPosMaxOffset) {
 			Vector3 newPosition = new Vector3 (transform.position.x, transform.position.y, playerT.position.z);

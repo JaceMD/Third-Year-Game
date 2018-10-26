@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class DetectionController : MonoBehaviour {
+public class StealthManager : MonoBehaviour {
 
 	public bool[] pRCTargetsVisible = new bool[9];
 	public Image detectionUIImage;
 
+	private bool playerInLight;
 
 	private float alphaPercentage;
 
@@ -17,7 +18,7 @@ public class DetectionController : MonoBehaviour {
 			pRCTargetsVisible [i] = false;
 		}
 	}
-	
+
 	// Update is called once per frame
 	void Update () {
 		updateAlphaUI ();
@@ -28,24 +29,32 @@ public class DetectionController : MonoBehaviour {
 	}
 
 	void updateAlphaUI(){
-		float alpha = checkVisibilityAlphaRatio ();
+		playerInLight = isPlayerInLight ();
 		alphaPercentage = detectionUIImage.color.a;
 
 		//Fade Alpha over time smoothly
-		if (alphaPercentage > alpha) {
-			alphaPercentage -= Time.deltaTime;
-		} else if (alphaPercentage < alpha) {
+		if (playerInLight == true) {
+			/*
 			alphaPercentage += Time.deltaTime;
-		} else {
-			alphaPercentage = alpha;
-		}
-
+			if (alphaPercentage > 1f) {
+				alphaPercentage = 1f;
+			}*/
+			detectionUIImage.color = new Color(detectionUIImage.color.r, detectionUIImage.color.g, detectionUIImage.color.b, 255f);
+		} else if (playerInLight == false) {
+			/*
+			  alphaPercentage -= Time.deltaTime;
+			if (alphaPercentage < 0f) {
+				alphaPercentage = 0f;
+			}
+			 */
+			detectionUIImage.color = new Color(detectionUIImage.color.r, detectionUIImage.color.g, detectionUIImage.color.b, 0f);
+		} 
 		detectionUIImage.color = new Color(detectionUIImage.color.r, detectionUIImage.color.g, detectionUIImage.color.b, alphaPercentage);
-
-
-		//check distance alpha
 	}
-	float checkVisibilityAlphaRatio(){
+
+
+
+	public bool isPlayerInLight(){
 		int numPRCTargetsVisible = 0;
 
 		for (int i = 0; i < 9; i++) {
@@ -53,30 +62,20 @@ public class DetectionController : MonoBehaviour {
 				numPRCTargetsVisible++;
 			}
 		}
-		alphaPercentage = numPRCTargetsVisible / 9f;
-
-		return alphaPercentage;
-
-	}
-
-
-	public bool isPlayerInLight(){
-		if (alphaPercentage > 0.5f) {
+		if (numPRCTargetsVisible > 0) {
 			return true;
+		} else if (numPRCTargetsVisible <= 0) {
+			return false;
 		} else {
 			return false;
 		}
 	}
+
 	public void playerDetected(){
 		detectionUIImage.color = new Color(1f, 0f, 0f, 1f);
 	}
 	public void playerUndetected(){
 		detectionUIImage.color = new Color(1f, 1f, 1f, alphaPercentage);
 	}
-
-
-
-
-
 
 }

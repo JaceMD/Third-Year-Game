@@ -84,6 +84,7 @@ public class OverseeController : MonoBehaviour
 			suppPtLight.GetComponent<Light> ().range = lightValue2;
 
 			//Reset oversee parent rotation
+			//Reset after time not instantly
 			overseeParentT.eulerAngles = new Vector3 (0f, 180f, 0f);
 		}
 	}

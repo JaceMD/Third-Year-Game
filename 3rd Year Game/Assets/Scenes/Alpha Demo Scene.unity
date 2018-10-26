@@ -58,7 +58,7 @@ LightmapSettings:
     serializedVersion: 10
     m_Resolution: 2
     m_BakeResolution: 10
-    m_AtlasSize: 1024
+    m_AtlasSize: 2048
     m_AO: 0
     m_AOMaxDistance: 1
     m_CompAOExponent: 1
@@ -2422,7 +2422,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4870208781385686, guid: 3afc489bf23504d488dd9be2510b2f00, type: 2}
       propertyPath: m_RootOrder
-      value: 8
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 114965726340850194, guid: 3afc489bf23504d488dd9be2510b2f00,
         type: 2}
@@ -2902,19 +2902,6 @@ MonoBehaviour:
   TNRSpeedFactor: 15
   TNRTime: 0.5
   delayTNRTime: 1.5
---- !u!114 &983885136
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 983885129}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a1f637e966315a049afcc31cb6f3da54, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pRCTargetsVisible: 000000000000000000
-  detectionUIImage: {fileID: 535016745}
 --- !u!136 &983885137
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -2928,6 +2915,19 @@ CapsuleCollider:
   m_Height: 1
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &983885138
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 983885129}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5722785fd575f3d44828046a47ac1874, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pRCTargetsVisible: 000000000000000000
+  detectionUIImage: {fileID: 535016745}
 --- !u!4 &1009559799 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4317264597762006, guid: 19bfa17a073300d4ea0e1d0802117596,
@@ -3013,7 +3013,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1048823347 stripped
 Transform:
@@ -4806,7 +4806,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 140, y: -12.09, z: 0}
 --- !u!1001 &1566330521
 Prefab:
@@ -4884,7 +4884,7 @@ Transform:
   - {fileID: 105094465}
   - {fileID: 1654720724}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1575968414 stripped
 Transform:
@@ -5625,7 +5625,7 @@ RectTransform:
   m_Children:
   - {fileID: 535016744}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -5648,7 +5648,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59ede0f85e76ddf4ab1d5691bc35b4cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  overseeRotationSpeed: 1.5
+  overseeRotationSpeed: 1
   overseeObj: {fileID: 963576544}
   player: {fileID: 983885129}
   pRCTargets:

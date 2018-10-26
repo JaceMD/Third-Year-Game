@@ -8,11 +8,7 @@ Material:
   m_PrefabInternal: {fileID: 0}
   m_Name: MoonMat
   m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
-<<<<<<< HEAD
   m_ShaderKeywords: ETC1_EXTERNAL_ALPHA _EMISSION
-=======
-  m_ShaderKeywords: _EMISSION _NORMALMAP_TANGENT_SPACE
->>>>>>> 6a19666bdaed1c23648181fe972f397bf2fce0cb
   m_LightmapFlags: 1
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -267,7 +263,7 @@ Material:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _DoubleSidedConstants: {r: 1, g: 1, b: -1, a: 0}
-    - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
+    - _EmissionColor: {r: 0.5424528, g: 1, b: 1, a: 1}
     - _EmissiveColor: {r: 0, g: 0, b: 0, a: 1}
     - _InvPrimScale: {r: 1, g: 1, b: 0, a: 0}
     - _IridescenceThicknessRemap: {r: 0, g: 1, b: 0, a: 0}

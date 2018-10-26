@@ -32,11 +32,11 @@ public class LightDetectorController : MonoBehaviour {
 				Debug.DrawLine (transform.position,  pRCTargets [loop].transform.position, Color.red);
 
 				if (Physics.Raycast (lightDetectionRays [loop], out hit, 8f) && ((hit.transform.gameObject.tag == "PRCTarget") || hit.transform.gameObject.tag == "Player")) {
-					player.GetComponent<DetectionController> ().setPRCTargetVisible (loop, true);
+					player.GetComponent<StealthManager> ().setPRCTargetVisible (loop, true);
 					Debug.DrawLine (hit.point, hit.point + Vector3.up * 2f, Color.green);
 					//Debug.Log ("Hit");
 				} else {
-					player.GetComponent<DetectionController> ().setPRCTargetVisible (loop, false);
+					player.GetComponent<StealthManager> ().setPRCTargetVisible (loop, false);
 				}
 			}
 		}

@@ -27,6 +27,7 @@ public class OverseeController : MonoBehaviour
 	{
 		controller = InputManager.ActiveDevice;
 		overseeParentT = this.transform;
+		overseeParentT.position = player.transform.position;
 	}
 	
 	// Update is called once per frame

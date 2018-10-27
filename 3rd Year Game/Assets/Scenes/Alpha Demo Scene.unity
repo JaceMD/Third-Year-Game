@@ -5367,7 +5367,8 @@ Prefab:
       propertyPath: detectionUIImage
       value: 
       objectReference: {fileID: 535016745}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 136677962678537424, guid: 91c38ee08f3b6b744a5d90096283952d, type: 2}
   m_SourcePrefab: {fileID: 100100000, guid: 91c38ee08f3b6b744a5d90096283952d, type: 2}
   m_IsPrefabAsset: 0
 --- !u!1001 &1731343016

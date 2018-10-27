@@ -21,9 +21,9 @@ public class MainCharacterController : MonoBehaviour
 
 	public float jumpForce = 3.5f;
 	public float fallMultiplier = 2.5f;
-	public bool canJump = false;
+	private bool canJump = false;
 
-	public bool isGrounded = false;
+	private bool isGrounded = false;
 
 	private bool crawling = false;
 	private float startCrawlingSquishTime;

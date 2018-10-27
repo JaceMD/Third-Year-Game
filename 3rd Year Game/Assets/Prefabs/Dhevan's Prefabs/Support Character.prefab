@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4119813147667558}
   - component: {fileID: 108034365114931108}
   m_Layer: 2
-  m_Name: Point Light
+  m_Name: Supp Point Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -99,7 +99,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1518607056841566}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -60.019245, y: 12.8, z: 0.1}
+  m_LocalPosition: {x: 2.3, y: 12.8, z: 0.1}
   m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
   m_Children:
   - {fileID: 4107946389362884}
@@ -113,7 +113,7 @@ MeshRenderer:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1438823925082346}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 0
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_MotionVectors: 1
@@ -149,7 +149,7 @@ MeshRenderer:
   m_GameObject: {fileID: 1518607056841566}
   m_Enabled: 0
   m_CastShadows: 0
-  m_ReceiveShadows: 1
+  m_ReceiveShadows: 0
   m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1

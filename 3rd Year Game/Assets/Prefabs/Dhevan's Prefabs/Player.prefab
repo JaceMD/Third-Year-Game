@@ -56,7 +56,6 @@ GameObject:
   - component: {fileID: 23617002791821182}
   - component: {fileID: 65876628155546778}
   - component: {fileID: 54181667485473000}
-  - component: {fileID: 136677962678537424}
   - component: {fileID: 114369846447068436}
   - component: {fileID: 114569921457064906}
   m_Layer: 9
@@ -328,8 +327,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1163148616806342}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -59.5, y: 1.5, z: -1.74}
-  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
+  m_LocalPosition: {x: 5.33, y: 1.5, z: -1.74}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4483175482548150}
   - {fileID: 4727303231720808}
@@ -898,8 +897,6 @@ MonoBehaviour:
   crawlSpeed: 3
   jumpForce: 6
   fallMultiplier: 2.5
-  canJump: 0
-  isGrounded: 0
   rotationSpeed: 10
   TNRSpeedFactor: 15
   TNRTime: 0.5
@@ -1036,19 +1033,6 @@ SphereCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!136 &136677962678537424
-CapsuleCollider:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1163148616806342}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  m_Radius: 0.5
-  m_Height: 1
-  m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!212 &212636991635778230
 SpriteRenderer:

@@ -72,7 +72,7 @@ public class MainCharacterController : MonoBehaviour
 		checkMovement ();
 		//checkJump ();
 		checkFalling ();
-		checkTuckNRoll ();
+		//checkTuckNRoll ();
 
 	}
 

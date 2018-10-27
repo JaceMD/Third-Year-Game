@@ -2640,6 +2640,10 @@ Prefab:
       propertyPath: pRCTargets.Array.data[8]
       value: 
       objectReference: {fileID: 1326592202}
+    - target: {fileID: 1091496041891220, guid: 33d85555e54d9d242801e3744cddd77c, type: 2}
+      propertyPath: m_Name
+      value: Supp Point Light
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 33d85555e54d9d242801e3744cddd77c, type: 2}
   m_IsPrefabAsset: 0

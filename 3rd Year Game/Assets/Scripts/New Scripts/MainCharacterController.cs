@@ -44,6 +44,8 @@ public class MainCharacterController : MonoBehaviour
 	public float TNRTime = 0.2f;
 	public float delayTNRTime = 1.5f;
 
+	private bool controlsDisabled = false;
+
 
 	// Use this for initialization
 	void Start ()
@@ -57,22 +59,24 @@ public class MainCharacterController : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
 	{
-		checkOnGround ();
-		checkJumpRequest ();
-		checkCrawlRequest ();
-		checkTuckNRollRequest ();
-		checkCrawling ();
-		checkRotation ();
-
+		if (controlsDisabled == false) {
+			checkOnGround ();
+			checkJumpRequest ();
+			checkCrawlRequest ();
+			checkTuckNRollRequest ();
+			checkCrawling ();
+			checkRotation ();
+		}
 	}
 
 	void FixedUpdate ()
 	{
-
-		checkMovement ();
-		//checkJump ();
-		checkFalling ();
-		//checkTuckNRoll ();
+		if(controlsDisabled == false){
+			checkMovement ();
+			//checkJump ();
+			checkFalling ();
+			//checkTuckNRoll ();
+		}
 
 	}
 
@@ -235,6 +239,14 @@ public class MainCharacterController : MonoBehaviour
 	{
 		return radians * (180 / Mathf.PI);
 	}
+
+	public void DisableControls(){
+		controlsDisabled = true;
+	}
+	public void EnableControls(){
+		controlsDisabled = false;
+	}
+
 		
 
 

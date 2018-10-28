@@ -17,6 +17,8 @@ public class MainCharacterController : MonoBehaviour
 
 	public float moveSpeed = 6f;
 	public float crawlSpeed = 3f;
+	public float shadowWalkSpeedFactor = 0.6f;
+	private bool inShadows = false;
 	private float actualSpeed;
 
 	public float jumpForce = 3.5f;
@@ -87,10 +89,17 @@ public class MainCharacterController : MonoBehaviour
 		xInput = controller.LeftStick.X;  
 		zInput = controller.LeftStick.Y;
 
+		float walkingSpeedFactor = 1f;
+		bool playerInLight = this.gameObject.GetComponent<StealthManager> ().isPlayerInLight ();
+		if (playerInLight == false) {
+			walkingSpeedFactor = shadowWalkSpeedFactor;
+			Debug.Log ("player in shadows");
+		}
+
 
 		Vector3 movement = Vector3.zero;
 		if (crawling == false) {
-			movement = new Vector3 (xInput, 0f, zInput) * Time.deltaTime * actualSpeed;
+			movement = new Vector3 (xInput, 0f, zInput) * Time.deltaTime * actualSpeed * walkingSpeedFactor;
 		} else if (crawling == true) {
 			movement = new Vector3 (xInput, 0f, zInput) * Time.deltaTime * crawlSpeed;
 		}
@@ -170,6 +179,7 @@ public class MainCharacterController : MonoBehaviour
 		} 
 
 		if (crawling == true) {
+			//Disable this when applying charcater model
 			ScaleSize (new Vector3 (2.1f, 0.75f, 2.1f));
 		} else {
 			ScaleSize (new Vector3 (1.5f, 1.5f, 1.5f));

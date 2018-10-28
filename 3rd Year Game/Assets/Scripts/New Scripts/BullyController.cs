@@ -86,7 +86,8 @@ public class BullyController : MonoBehaviour {
 		playerDistance = Vector3.Magnitude (playerT.position - transform.position);
 		Debug.Log ("Player Distance: " + playerDistance);
 		if (playerDistance <= detectionRadius) {
-			
+
+
 			//CheckIfPlayerInLight
 			RaycastHit hit;
 
@@ -94,8 +95,15 @@ public class BullyController : MonoBehaviour {
 			Debug.DrawLine (transform.position, centrePRCTarget.transform.position, Color.red);
 
 			if (Physics.Raycast (visualDetectionRay, out hit, detectionRadius) && ((hit.transform.gameObject.tag == "PRCTarget") || hit.transform.gameObject.tag == "Player")) {
-				alerted = true;
-				Debug.DrawLine (hit.point, hit.point + Vector3.up * 2f, Color.green);
+
+				bool playerInLight = player.gameObject.GetComponent<StealthManager> ().isPlayerInLight ();
+				if (playerInLight == true) {
+					alerted = true;
+					Debug.DrawLine (hit.point, hit.point + Vector3.up * 2f, Color.green);
+				} else {
+					alerted = false;
+				}
+
 			} else {
 				alerted = false;
 			}

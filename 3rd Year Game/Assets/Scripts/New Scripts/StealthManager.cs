@@ -69,9 +69,9 @@ public class StealthManager : MonoBehaviour
 				numPRCTargetsVisible++;
 			}
 		}
-		if (numPRCTargetsVisible > 0) {
+		if (numPRCTargetsVisible > 2) {
 			return true;
-		} else if (numPRCTargetsVisible <= 0) {
+		} else if (numPRCTargetsVisible <= 2) {
 			return false;
 		} else {
 			return false;

@@ -48,8 +48,9 @@ public class BullyController : MonoBehaviour {
 			if (currentAlertTime <= 0f) {
 				gameOver = true;
 				EnemyDetectionUI.gameObject.GetComponent<SpriteRenderer> ().color = Color.red;
-				//code to disable player controller and start game over sequence.
-				moveTowardPlayer();
+
+				//Disabling moving for beta
+				//moveTowardPlayer();
 				player.GetComponent<MainCharacterController> ().DisableControls ();
 				GameObject.Find ("Support Character").GetComponent<SuppCharController> ().DisableControls ();
 			}

@@ -9,7 +9,7 @@ public class RestartLevelController : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		
+		CheckPointLocation = Player.transform.position;
 	}
 	
 	// Update is called once per frame

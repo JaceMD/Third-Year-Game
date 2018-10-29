@@ -49,6 +49,8 @@ public class MainCharacterController : MonoBehaviour
 	private bool controlsDisabled = false;
 
 	public Animator charAnim;
+	private bool nightMode = false;
+
 
 
 	// Use this for initialization
@@ -105,7 +107,7 @@ public class MainCharacterController : MonoBehaviour
 			}
 		} else {
 			if (crawling == false) {
-				if (playerInLight == false) {
+				if (playerInLight == false && nightMode == true) {
 					movement = new Vector3 (xInput, 0f, zInput) * Time.deltaTime * actualSpeed * shadowWalkSpeedFactor;
 					charAnim.SetInteger ("State", 4);
 					//Debug.Log ("player in shadows");
@@ -272,6 +274,9 @@ public class MainCharacterController : MonoBehaviour
 	}
 	public void EnableControls(){
 		controlsDisabled = false;
+	}
+	public void EnableNightMode(){
+		nightMode = true;
 	}
 
 		

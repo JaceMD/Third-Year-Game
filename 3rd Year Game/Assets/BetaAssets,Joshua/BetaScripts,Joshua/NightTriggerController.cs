@@ -27,6 +27,7 @@ public class NightTriggerController : MonoBehaviour {
             getTimer = SetTimer;
             getMoveSpeed = PlayerMovement.shadowWalkSpeedFactor;
             PlayerMovement.shadowWalkSpeedFactor = 0;
+			PlayerMovement.EnableNightMode ();
         }
         SupportCharacter.SetActive(true);
         Tree.SetActive(true);

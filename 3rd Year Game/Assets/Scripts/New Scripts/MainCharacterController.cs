@@ -48,6 +48,8 @@ public class MainCharacterController : MonoBehaviour
 
 	private bool controlsDisabled = false;
 
+	public Animator charAnim;
+
 
 	// Use this for initialization
 	void Start ()
@@ -89,21 +91,34 @@ public class MainCharacterController : MonoBehaviour
 		xInput = controller.LeftStick.X;  
 		zInput = controller.LeftStick.Y;
 
-		float walkingSpeedFactor = 1f;
+		//float walkingSpeedFactor = 1f;
 		bool playerInLight = this.gameObject.GetComponent<StealthManager> ().isPlayerInLight ();
-		if (playerInLight == false) {
-			walkingSpeedFactor = shadowWalkSpeedFactor;
-			Debug.Log ("player in shadows");
-		}
+
 
 
 		Vector3 movement = Vector3.zero;
-		if (crawling == false) {
-			movement = new Vector3 (xInput, 0f, zInput) * Time.deltaTime * actualSpeed * walkingSpeedFactor;
-		} else if (crawling == true) {
-			movement = new Vector3 (xInput, 0f, zInput) * Time.deltaTime * crawlSpeed;
+		if (xInput == 0f && zInput == 0f) {
+			if (crawling == false) {
+				charAnim.SetInteger ("State", 0);
+			} else {
+				charAnim.SetInteger ("State", 8);
+			}
+		} else {
+			if (crawling == false) {
+				if (playerInLight == false) {
+					movement = new Vector3 (xInput, 0f, zInput) * Time.deltaTime * actualSpeed * shadowWalkSpeedFactor;
+					charAnim.SetInteger ("State", 4);
+					//Debug.Log ("player in shadows");
+				} else {
+					movement = new Vector3 (xInput, 0f, zInput) * Time.deltaTime * actualSpeed;
+					charAnim.SetInteger ("State", 1);
+				}
+			} else if (crawling == true) {
+				movement = new Vector3 (xInput, 0f, zInput) * Time.deltaTime * crawlSpeed;
+				charAnim.SetInteger ("State", 7);
+			}
+			playerRB.MovePosition (transform.position + movement);
 		}
-		playerRB.MovePosition (transform.position + movement);
 	}
 
 	void checkJumpRequest ()
@@ -165,11 +180,13 @@ public class MainCharacterController : MonoBehaviour
 	{ //In Update
 		if (crawlRequest == true) {
 			if (crawling == false) {
+				charAnim.SetInteger ("State", 6);
 				startCrawlingSquishTime = Time.time;
 				crawling = true;
 				disableJump = true;
 				disableTNR = true;
 			} else {
+				charAnim.SetInteger ("State", 9); //Stand
 				crawling = false;
 				startCrawlingSquishTime = Time.time;
 				disableJump = false;
@@ -180,9 +197,9 @@ public class MainCharacterController : MonoBehaviour
 
 		if (crawling == true) {
 			//Disable this when applying charcater model
-			ScaleSize (new Vector3 (2.1f, 0.75f, 2.1f));
+			//ScaleSize (new Vector3 (2.1f, 0.75f, 2.1f));
 		} else {
-			ScaleSize (new Vector3 (1.5f, 1.5f, 1.5f));
+			//ScaleSize (new Vector3 (1.5f, 1.5f, 1.5f));
 		}
 	}
 

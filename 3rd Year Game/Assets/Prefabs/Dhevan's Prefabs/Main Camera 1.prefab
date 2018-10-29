@@ -118,10 +118,10 @@ MonoBehaviour:
   followTime: 0.15
   FollowSpeed: 4
   xPosOffset: 0
-  yPosOffset: 7
+  yPosOffset: 8
   zPosoffset: -13
   xRotOffset: 15
-  yRotOffset: 0
+  yRotOffset: 12
   zRotOffset: 0
   camRotateSpeed: 6
 --- !u!114 &114507674478065026

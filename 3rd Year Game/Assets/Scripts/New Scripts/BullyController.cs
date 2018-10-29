@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BullyController : MonoBehaviour {
 
-	public float detectionRadius = 10f;
+	public float detectionRadius = 6f;
 
 	private float playerDistance;
 	private GameObject player;
@@ -13,7 +13,7 @@ public class BullyController : MonoBehaviour {
 	private Ray visualDetectionRay;
 	private GameObject centrePRCTarget;
 
-	public float alertTime = 1f;
+	public float alertTime = 1.2f;
 	private float currentAlertTime;
 
 	public GameObject EnemyDetectionUI;
@@ -27,6 +27,7 @@ public class BullyController : MonoBehaviour {
 	private bool alerted = false;
 	[SerializeField]
 	private bool gameOver = false;
+	private float startGameOverTime;
 
 	// Use this for initialization
 	void Start () {
@@ -41,18 +42,30 @@ public class BullyController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (alerted == true) {
+		if (gameOver == true && (Time.time >= startGameOverTime + 2f)) {
+			Debug.Log ("GameoVer");
+			Vector3 checkpointPos = GameObject.Find ("KillCollider").GetComponent<RestartLevelController>().CheckPointLocation;
+			player.transform.position = checkpointPos;
+			player.GetComponent<MainCharacterController> ().EnableControls ();
+			GameObject.Find ("Support Character").GetComponent<SuppCharController> ().EnableControls ();
+			gameOver = false;
+			currentAlertTime = alertTime;
+		}
+		if (alerted == true && gameOver == false) {
 			currentAlertTime -= Time.deltaTime;
 			EnemyDetectionUI.gameObject.SetActive (true);
 			rotateTowardPlayer ();
 			if (currentAlertTime <= 0f) {
 				gameOver = true;
+				startGameOverTime = Time.time;
 				EnemyDetectionUI.gameObject.GetComponent<SpriteRenderer> ().color = Color.red;
 
 				//Disabling moving for beta
 				//moveTowardPlayer();
 				player.GetComponent<MainCharacterController> ().DisableControls ();
 				GameObject.Find ("Support Character").GetComponent<SuppCharController> ().DisableControls ();
+			} else {
+				EnemyDetectionUI.gameObject.GetComponent<SpriteRenderer> ().color = Color.yellow;
 			}
 
 		} 
@@ -62,6 +75,9 @@ public class BullyController : MonoBehaviour {
 			currentAlertTime = alertTime;
 			//rotateToNeutral ();
 		}
+
+
+
 	}
 
 	void FixedUpdate(){

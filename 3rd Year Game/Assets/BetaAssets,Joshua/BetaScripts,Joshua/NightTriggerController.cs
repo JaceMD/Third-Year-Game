@@ -38,7 +38,7 @@ public class NightTriggerController : MonoBehaviour {
     void Update () {
 		if(getTimer > 0)
         {
-            LightSource.intensity -= 0.1f * Time.deltaTime *3;
+            LightSource.intensity -= 0.2f * Time.deltaTime *3;
             getTimer -= 0.1f * Time.deltaTime;
             if (getTimer <= 0.7)
             {

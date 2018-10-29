@@ -25,7 +25,7 @@ public class MainCharacterController : MonoBehaviour
 	public float fallMultiplier = 2.5f;
 	private bool canJump = false;
 
-	private bool isGrounded = false;
+	private bool isGrounded = true;
 
 	private bool crawling = false;
 	private float startCrawlingSquishTime;
@@ -51,6 +51,8 @@ public class MainCharacterController : MonoBehaviour
 	public Animator charAnim;
 	private bool nightMode = false;
 
+	private GameObject standingCollider;
+
 
 
 	// Use this for initialization
@@ -60,6 +62,8 @@ public class MainCharacterController : MonoBehaviour
 		actualSpeed = moveSpeed;
 		playerRB = this.GetComponent<Rigidbody> ();
 		crawling = false;
+		standingCollider = GameObject.Find ("StandingCollider");
+		standingCollider.SetActive (true);
 	}
 	
 	// Update is called once per frame
@@ -72,6 +76,10 @@ public class MainCharacterController : MonoBehaviour
 			checkTuckNRollRequest ();
 			checkCrawling ();
 			checkRotation ();
+		} else {
+			charAnim.SetInteger("State", 5); 
+			crawling = false;
+			standingCollider.SetActive (true);
 		}
 	}
 
@@ -109,7 +117,7 @@ public class MainCharacterController : MonoBehaviour
 			if (crawling == false) {
 				if (playerInLight == false && nightMode == true) {
 					movement = new Vector3 (xInput, 0f, zInput) * Time.deltaTime * actualSpeed * shadowWalkSpeedFactor;
-					charAnim.SetInteger ("State", 4);
+					//charAnim.SetInteger ("State", 4);
 					//Debug.Log ("player in shadows");
 				} else {
 					movement = new Vector3 (xInput, 0f, zInput) * Time.deltaTime * actualSpeed;
@@ -173,7 +181,7 @@ public class MainCharacterController : MonoBehaviour
 
 	void checkCrawlRequest ()
 	{
-		if (controller.LeftStickButton.WasPressed == true && disableCrawl == false && crawlRequest == false) {
+		if (controller.LeftStickButton.WasPressed == true /*&& disableCrawl == false && crawlRequest == false*/) {
 			crawlRequest = true;
 		}
 	}
@@ -187,12 +195,14 @@ public class MainCharacterController : MonoBehaviour
 				crawling = true;
 				disableJump = true;
 				disableTNR = true;
+				standingCollider.SetActive (false);
 			} else {
 				charAnim.SetInteger ("State", 9); //Stand
 				crawling = false;
 				startCrawlingSquishTime = Time.time;
 				disableJump = false;
 				disableTNR = false;
+				standingCollider.SetActive (true);
 			}
 			crawlRequest = false;
 		} 

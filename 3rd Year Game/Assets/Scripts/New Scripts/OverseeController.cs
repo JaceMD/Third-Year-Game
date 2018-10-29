@@ -28,6 +28,7 @@ public class OverseeController : MonoBehaviour
 		controller = InputManager.ActiveDevice;
 		overseeParentT = this.transform;
 		overseeParentT.position = player.transform.position;
+
 	}
 	
 	// Update is called once per frame
@@ -38,7 +39,7 @@ public class OverseeController : MonoBehaviour
 	}
 
 	void updateOverseePos(){
-		Vector3 newPos = new Vector3 (player.transform.position.x, 4.5f, player.transform.position.z);
+		Vector3 newPos = new Vector3 (player.transform.position.x, player.transform.position.y + 4.5f, player.transform.position.z);
 		this.transform.position = newPos;
 		//Vector3.Slerp (transform.position, newPos, 2f * Time.deltaTime)
 	}

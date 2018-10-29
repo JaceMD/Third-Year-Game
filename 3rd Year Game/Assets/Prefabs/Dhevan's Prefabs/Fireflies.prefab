@@ -84,7 +84,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50e70438ee1a3634b83f2ca2b9a90eb1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
+  player: {fileID: 1163148616806342, guid: 91c38ee08f3b6b744a5d90096283952d, type: 2}
   pRCTargets:
   - {fileID: 0}
   - {fileID: 0}

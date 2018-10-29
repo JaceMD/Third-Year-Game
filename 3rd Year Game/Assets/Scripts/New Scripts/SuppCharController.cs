@@ -17,6 +17,8 @@ public class SuppCharController : MonoBehaviour {
 	private Ray[] lightDetectionRays = new Ray[9];
 	public GameObject[] pRCTargets = new GameObject[9];
 
+	private bool controlsDisabled = false;
+
 
 
 	// Use this for initialization
@@ -27,24 +29,24 @@ public class SuppCharController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		if (controlsDisabled == false) {
+			if (controller.RightStickButton.WasPressed) {
+				if (followMode == true) {
+					followMode = false;
+					GameObject.Find ("Oversee").GetComponent<OverseeController> ().ResetOverseePos ();
+				} else if (followMode == false) {
+					followMode = true;
+				}
 
-		if (controller.RightStickButton.WasPressed) {
-			if (followMode == true) {
-				followMode = false;
-				GameObject.Find ("Oversee").GetComponent<OverseeController> ().ResetOverseePos ();
-			} else if(followMode == false){
-				followMode = true;
 			}
 
+			if (followMode == true) {
+				checkFollowDistance ();
+			} else {
+				Vector3 newPosition = new Vector3 (overseePos.position.x, overseePos.position.y, overseePos.position.z);
+				this.transform.position = Vector3.Slerp (transform.position, newPosition, 6 * Time.deltaTime);
+			}
 		}
-
-		if (followMode == true) {
-			checkFollowDistance ();
-		} else {
-			Vector3 newPosition = new Vector3 (overseePos.position.x, overseePos.position.y, overseePos.position.z);
-			this.transform.position = Vector3.Slerp (transform.position, newPosition, 6 * Time.deltaTime);
-		}
-
 
 	}
 
@@ -82,5 +84,12 @@ public class SuppCharController : MonoBehaviour {
 			Vector3 newPosition = new Vector3 (transform.position.x, transform.position.y, playerT.position.z);
 			this.transform.position = Vector3.Slerp (transform.position, newPosition, suppCharFollowSpeed * Time.deltaTime);
 		}
+	}
+
+	public void DisableControls(){
+		controlsDisabled = true;
+	}
+	public void EnableControls(){
+		controlsDisabled = false;
 	}
 }

@@ -51,10 +51,11 @@ public class BullyController : MonoBehaviour {
 				//code to disable player controller and start game over sequence.
 				moveTowardPlayer();
 				player.GetComponent<MainCharacterController> ().DisableControls ();
+				GameObject.Find ("Support Character").GetComponent<SuppCharController> ().DisableControls ();
 			}
 
 		} 
-		else if(alerted == false){
+		else if(alerted == false && gameOver == false){
 			//continue surveying
 			EnemyDetectionUI.SetActive (false);
 			currentAlertTime = alertTime;
@@ -84,7 +85,7 @@ public class BullyController : MonoBehaviour {
 
 	void checkPlayerDistance(){
 		playerDistance = Vector3.Magnitude (playerT.position - transform.position);
-		Debug.Log ("Player Distance: " + playerDistance);
+		//Debug.Log ("Player Distance: " + playerDistance);
 		if (playerDistance <= detectionRadius) {
 
 

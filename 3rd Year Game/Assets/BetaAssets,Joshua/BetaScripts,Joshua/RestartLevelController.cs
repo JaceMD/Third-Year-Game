@@ -4,9 +4,12 @@ using UnityEngine;
 
 public class RestartLevelController : MonoBehaviour {
 
+    public GameObject Player;
+    public Vector3 CheckPointLocation;
+
 	// Use this for initialization
 	void Start () {
-		
+		CheckPointLocation = Player.transform.position;
 	}
 	
 	// Update is called once per frame
@@ -16,7 +19,7 @@ public class RestartLevelController : MonoBehaviour {
 
 	void OnTriggerEnter(Collider other){
 		if (other.gameObject.tag == "Player") {
-			GameObject.Find ("SceneController").GetComponent<SceneController> ().RestartLevel ();
+            Player.transform.position = CheckPointLocation;
 		}
 	}
 }

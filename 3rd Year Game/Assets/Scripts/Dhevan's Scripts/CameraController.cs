@@ -8,7 +8,7 @@ public class CameraController : MonoBehaviour
 
 	private InputDevice controller;
 
-	public Transform playerT, supportT;
+	public Transform playerT;
 	private Transform focalObjT;
 
 	public float followTime = 0.15f;

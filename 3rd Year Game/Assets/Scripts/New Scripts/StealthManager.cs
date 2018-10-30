@@ -48,7 +48,7 @@ public class StealthManager : MonoBehaviour
 			//detectionUIImage.color = new Color(detectionUIImage.color.r, detectionUIImage.color.g, detectionUIImage.color.b, 1f);
 		} else if (playerInLight == false) {
 
-			alphaPercentage -= Time.deltaTime;
+			alphaPercentage -= Time.deltaTime*2;
 			if (alphaPercentage < 0f) {
 				alphaPercentage = 0f;
 			}

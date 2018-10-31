@@ -2,8 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using InControl;
 
 public class SceneController : MonoBehaviour {
+
+	private InputDevice controller;
+
+	void Start(){
+		controller = InputManager.ActiveDevice;
+	}
 
 	public void onClickMainMenu(){
 		SceneManager.LoadScene ("Main Menu Scene");
